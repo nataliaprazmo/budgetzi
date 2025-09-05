@@ -1,59 +1,41 @@
-# BudgetTracker
+# Budgetzi - Simple Budget Tracker 💰
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+A simple and impressive **Angular + Angular Material** project that helps track expenses and income, while showcasing core Angular features.
 
-## Development server
+## Planned features
 
-To start a local development server, run:
+- **Expense Management**
 
-```bash
-ng serve
-```
+  - Add expenses and income with description, category, amount, and date.
+  - View all entries in a Material Table with sorting and pagination.
+  - Delete or mark items as reimbursed.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Categories**
 
-## Code scaffolding
+  - Filter transactions by category using Material Chips or dropdown.
+  - Visual highlighting of large expenses with custom directives.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Summary Dashboard**
 
-```bash
-ng generate component component-name
-```
+  - Display total income, total expenses, and current balance.
+  - Data updates reactively using **signals** and **store**.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Forms**
 
-```bash
-ng generate --help
-```
+  - Add new expense via Angular Material dialog form.
+  - Validations included (required fields, positive numbers, etc.).
+  - Two-way binding with `ngModel`.
 
-## Building
+- **UI Feedback**
+  - Snackbar notifications on adding/deleting expenses.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## ▶️ Getting Started
 
 ```bash
-ng test
+git clone https://github.com/nataliaprazmo/budgetzi.git
+cd budgetzi
+npm install
+ng serve -o
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The app will run on [`http://localhost:4200/`](http://localhost:4200/)
