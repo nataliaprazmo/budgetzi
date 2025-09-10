@@ -3,7 +3,7 @@
     <mat-nav-list>
       <button mat-button (click)="drawer.close()">
         <mat-icon>add</mat-icon>
-        <span>Add Expense</span>
+        <span>Add Transaction</span>
       </button>
       <button mat-button (click)="drawer.close()">
         <mat-icon>analytics</mat-icon>
@@ -22,9 +22,11 @@
 
       <span class="spacer"></span>
 
+      @if(totalBalance$ | async){
       <p>
-        Total balance: <span class="balance">{{ totalBalance() | currency }}</span>
+        Total balance: <span class="balance">{{ totalBalance$ | async | currency }}</span>
       </p>
+      }
     </mat-toolbar>
 
     <router-outlet></router-outlet>
