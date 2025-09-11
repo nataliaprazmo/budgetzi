@@ -6,14 +6,12 @@
     </mat-card-header>
 
     <mat-card-content>
+      @let isLoading = loading$ | async; @let transactionLength = (transactions$ | async)?.length ??
+      0;
+
       <div class="action-buttons">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="importSample()"
-          [disabled]="loading$ | async"
-        >
-          @if (loading$ | async) {
+        <button mat-raised-button color="primary" (click)="importSample()" [disabled]="isLoading">
+          @if (isLoading) {
           <mat-spinner diameter="20"></mat-spinner>
           <span>Loading Sample Data...</span>
           } @else {
@@ -21,13 +19,8 @@
           }
         </button>
 
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="importCsv()"
-          [disabled]="loading$ | async"
-        >
-          @if (loading$ | async) {
+        <button mat-raised-button color="accent" (click)="importCsv()" [disabled]="isLoading">
+          @if (isLoading) {
           <mat-spinner diameter="20"></mat-spinner>
           <span>Importing CSV...</span>
           } @else {
@@ -38,9 +31,9 @@
         <button
           mat-raised-button
           (click)="exportCsv()"
-          [disabled]="(loading$ | async) || !(transactions$ | async)?.length"
+          [disabled]="isLoading || !transactionLength"
         >
-          @if (loading$ | async) {
+          @if (isLoading) {
           <mat-spinner diameter="20"></mat-spinner>
           <span>Exporting...</span>
           } @else {
@@ -52,7 +45,7 @@
           mat-raised-button
           color="warn"
           (click)="clearAllData()"
-          [disabled]="!(transactions$ | async)?.length"
+          [disabled]="!transactionLength"
           class="action-button"
         >
           Clear All Data

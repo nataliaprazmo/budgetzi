@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { TransactionState } from '../types/transaction-states.types';
 
-export const selectTransactionState = createFeatureSelector<TransactionState>('transactions');
+export const selectTransactionState = createFeatureSelector<TransactionState>('transaction');
 
 export const selectAllTransactions = createSelector(
   selectTransactionState,
