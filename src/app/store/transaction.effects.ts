@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as TransactionActions from './transaction.actions';
-import { catchError, map, switchMap, of, withLatestFrom, Observable } from 'rxjs';
+import { catchError, map, switchMap, of, withLatestFrom, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../types/transaction-states.types';
 import { Transaction } from '../types/transaction.types';
@@ -47,7 +47,7 @@ export class TransactionEffects {
   export$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TransactionActions.exportTransactions),
-      withLatestFrom(this.store.select((state) => state.transactions)),
+      withLatestFrom(this.store.select((state) => state.transaction.transactions)),
       switchMap(([_, transactions]) => {
         try {
           const csv = this.convertToCsv(transactions);
@@ -57,6 +57,23 @@ export class TransactionEffects {
         }
       })
     )
+  );
+
+  persistTransactions$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          TransactionActions.addTransaction,
+          TransactionActions.deleteTransaction,
+          TransactionActions.importTransactionsFromCsvSuccess,
+          TransactionActions.loadTransactionsFromLocalStorageSuccess
+        ),
+        withLatestFrom(this.store.select((state) => state.transaction.transactions)),
+        tap(([_, transactions]) => {
+          localStorage.setItem('transactions', JSON.stringify(transactions));
+        })
+      ),
+    { dispatch: false }
   );
 
   private readCsvFile(file: File) {

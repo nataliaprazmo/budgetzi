@@ -7,13 +7,11 @@ export const transactionReducer = createReducer(
 
   on(TransactionActions.addTransaction, (state, { transaction }) => {
     const newTransactions = [...state.transactions, transaction];
-    localStorage.setItem('transactions', JSON.stringify(newTransactions));
     return { ...state, transactions: newTransactions };
   }),
 
   on(TransactionActions.deleteTransaction, (state, { id }) => {
     const newTransactions = state.transactions.filter((t) => t.id !== id);
-    localStorage.setItem('transactions', JSON.stringify(newTransactions));
     return { ...state, transactions: newTransactions };
   }),
 
@@ -34,7 +32,6 @@ export const transactionReducer = createReducer(
 
   on(TransactionActions.importTransactionsFromCsvSuccess, (state, { transactions }) => {
     const mergedTransactions = [...state.transactions, ...transactions];
-    localStorage.setItem('transactions', JSON.stringify(mergedTransactions));
     return { ...state, transactions: mergedTransactions };
   }),
 
