@@ -6,58 +6,13 @@
     </mat-card-header>
 
     <mat-card-content>
-      @let isLoading = loading$ | async; @let transactionLength = (transactions$ | async)?.length ??
-      0;
-
-      <div class="action-buttons">
-        <button mat-raised-button color="primary" (click)="importSample()" [disabled]="isLoading">
-          @if (isLoading) {
-          <mat-spinner diameter="20"></mat-spinner>
-          <span>Loading Sample Data...</span>
-          } @else {
-          <span>Import Sample Data</span>
-          }
-        </button>
-
-        <button mat-raised-button color="accent" (click)="importCsv()" [disabled]="isLoading">
-          @if (isLoading) {
-          <mat-spinner diameter="20"></mat-spinner>
-          <span>Importing CSV...</span>
-          } @else {
-          <span>Import from CSV</span>
-          }
-        </button>
-
-        <button
-          mat-raised-button
-          (click)="exportCsv()"
-          [disabled]="isLoading || !transactionLength"
-        >
-          @if (isLoading) {
-          <mat-spinner diameter="20"></mat-spinner>
-          <span>Exporting...</span>
-          } @else {
-          <span>Export to CSV</span>
-          }
-        </button>
-
-        <button
-          mat-raised-button
-          color="warn"
-          (click)="clearAllData()"
-          [disabled]="!transactionLength"
-          class="action-button"
-        >
-          Clear All Data
-        </button>
-      </div>
-
-      <input
-        #fileInput
-        type="file"
-        accept=".csv"
-        (change)="onFileSelected($event)"
-        style="display: none"
+      <app-action-buttons
+        [isLoading]="(loading$ | async) ?? false"
+        [transactions]="transactions$ | async"
+        (importSample)="importSample()"
+        (importCsv)="importCsv($event)"
+        (exportCsv)="exportCsv()"
+        (clearAll)="clearAllData()"
       />
 
       <div class="help-text">

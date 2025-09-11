@@ -1,0 +1,40 @@
+<div class="action-buttons">
+  <app-base-button
+    label="Import Sample Data"
+    loadingLabel="Loading Sample Data..."
+    color="primary"
+    [isLoading]="isLoading"
+    (action)="importSample.emit()"
+  />
+
+  <app-base-button
+    label="Import from CSV"
+    loadingLabel="Importing CSV..."
+    color="accent"
+    [isLoading]="isLoading"
+    (action)="triggerFileInput()"
+  />
+  <input
+    #fileInput
+    type="file"
+    accept=".csv"
+    (change)="onFileSelected($event)"
+    style="display: none"
+  />
+
+  <app-base-button
+    label="Export to CSV"
+    loadingLabel="Exporting..."
+    [isLoading]="isLoading"
+    [disabled]="isLoading || !transactions?.length"
+    (action)="exportCsv.emit()"
+  />
+
+  <app-base-button
+    label="Clear All Data"
+    loadingLabel="Clearing..."
+    color="warn"
+    [disabled]="!transactions?.length"
+    (action)="clearAll.emit()"
+  />
+</div>

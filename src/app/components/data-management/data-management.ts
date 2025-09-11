@@ -11,20 +11,17 @@ import {
 } from '../../store/transaction.actions';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectAllTransactions, selectTransactionLoading } from '../../store/transaction.selectors';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AsyncPipe } from '@angular/common';
+import { ActionButtons } from '../action-buttons/action-buttons';
 
 @Component({
   selector: 'app-data-management',
-  imports: [MatCardModule, MatButtonModule, AsyncPipe, MatProgressSpinnerModule, MatSnackBarModule],
+  imports: [MatCardModule, AsyncPipe, MatSnackBarModule, ActionButtons],
   templateUrl: './data-management.html',
   styleUrl: './data-management.css',
 })
 export class DataManagement {
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-
   transactions$: Observable<Transaction[]>;
   loading$: Observable<undefined | boolean>;
 
@@ -50,19 +47,8 @@ export class DataManagement {
     this.store.dispatch(loadTransactionsFromSample());
   }
 
-  importCsv() {
-    this.fileInput.nativeElement.click();
-  }
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files?.length) {
-      const file = input.files[0];
-      if (!file) return;
-
-      this.store.dispatch(importTransactionsFromCsv({ file }));
-      input.value = '';
-    }
+  importCsv(file: File) {
+    this.store.dispatch(importTransactionsFromCsv({ file }));
   }
 
   exportCsv() {
