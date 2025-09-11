@@ -5,8 +5,7 @@ import { TransactionFilters } from '../types/transaction-filters.types';
 export const refreshSummary = createAction('[Transaction] Refresh Summary');
 
 export const loadTransactionsFromSample = createAction(
-  '[Transaction] Load Transactions From Sample',
-  props<{ file: File }>()
+  '[Transaction] Load Transactions From Sample'
 );
 
 export const loadTransactionsFromLocalStorage = createAction(

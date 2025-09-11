@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { TransactionState } from '../types/transaction-states.types';
 import { Transaction } from '../types/transaction.types';
 import * as Papa from 'papaparse';
+import { SAMPLE_TRANSACTIONS } from '../data/sample-data';
 
 @Injectable({
   providedIn: 'root',
@@ -17,15 +18,10 @@ export class TransactionEffects {
   loadSample$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TransactionActions.loadTransactionsFromSample),
-      switchMap(({ file }) =>
-        this.readCsvFile(file).pipe(
-          map((transactions: Transaction[]) =>
-            TransactionActions.loadTransactionsFromLocalStorageSuccess({ transactions })
-          ),
-          catchError((error) =>
-            of(TransactionActions.loadTransactionsFromLocalStorageFailure({ error }))
-          )
-        )
+      map(() =>
+        TransactionActions.loadTransactionsFromLocalStorageSuccess({
+          transactions: SAMPLE_TRANSACTIONS,
+        })
       )
     )
   );

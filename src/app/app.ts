@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { TransactionState } from './types/transaction-states.types';
-import { selectFilteredBalance } from './store/transaction.selectors';
+import { selectBalance } from './store/transaction.selectors';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +30,7 @@ export class App {
   protected readonly title = signal('💰 Budgetzi');
   totalBalance$: Observable<number>;
 
-  constructor(private store: Store<TransactionState>) {
-    this.totalBalance$ = this.store.select(selectFilteredBalance);
+  constructor(private store: Store<{ transaction: TransactionState }>) {
+    this.totalBalance$ = this.store.select(selectBalance);
   }
 }

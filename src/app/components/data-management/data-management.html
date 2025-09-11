@@ -1,0 +1,66 @@
+<div class="data-management-container">
+  <mat-card class="data-management-card">
+    <mat-card-header>
+      <mat-card-title>Data Management</mat-card-title>
+      <mat-card-subtitle>Import, export, and manage your transactions</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="action-buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="importSample()"
+          [disabled]="loading$ | async"
+        >
+          @if (loading$ | async) {
+          <mat-spinner diameter="20"></mat-spinner>
+          <span>Loading Sample Data...</span>
+          } @else {
+          <span>Import Sample Data</span>
+          }
+        </button>
+
+        <!-- <button mat-raised-button color="accent"
+          (click)="importCsv()"
+          [disabled]="isImportingCsv()">
+          <ng-container *ngIf="isImportingCsv(); else importCsvLabel">
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Importing CSV...</span>
+          </ng-container>
+          <ng-template #importCsvLabel>
+            <span>Import from CSV</span>
+          </ng-template>
+        </button>
+
+        <button mat-raised-button
+          (click)="exportCsv()"
+          [disabled]="isExportingCsv() || expenseCount() === 0">
+          <ng-container *ngIf="isExportingCsv(); else exportLabel">
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>Exporting...</span>
+          </ng-container>
+          <ng-template #exportLabel>
+            <span>Export to CSV</span>
+          </ng-template>
+        </button> -->
+      </div>
+
+      <!-- <input
+        #fileInput
+        type="file"
+        accept=".csv"
+        (change)="onFileSelected($event)"
+        style="display: none"
+      /> -->
+
+      <div class="help-text">
+        <p>
+          <strong>CSV Format:</strong> Your CSV file should include columns: Date, Title,
+          Description, Category, Amount, Type
+        </p>
+        <p><strong>File Limit:</strong> Maximum file size is 5MB</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

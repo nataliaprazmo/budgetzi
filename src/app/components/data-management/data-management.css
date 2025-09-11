@@ -1,0 +1,20 @@
+.data-management-container {
+  margin: 0px auto;
+  width: fit-content;
+}
+
+.data-management-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 3rem;
+  border-radius: 2rem;
+}
+
+.help-text {
+  font-size: small;
+  font-weight: 300;
+}
+
+.action-buttons {
+}

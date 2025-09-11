@@ -20,28 +20,48 @@ export const transactionReducer = createReducer(
     filters,
   })),
 
+  on(TransactionActions.loadTransactionsFromLocalStorage, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
   on(TransactionActions.loadTransactionsFromLocalStorageSuccess, (state, { transactions }) => ({
     ...state,
     transactions,
+    loading: false,
   })),
-
   on(TransactionActions.loadTransactionsFromLocalStorageFailure, (state, { error }) => ({
     ...state,
     error,
+    loading: false,
   })),
 
+  on(TransactionActions.importTransactionsFromCsv, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
   on(TransactionActions.importTransactionsFromCsvSuccess, (state, { transactions }) => {
     const mergedTransactions = [...state.transactions, ...transactions];
-    return { ...state, transactions: mergedTransactions };
+    return { ...state, transactions: mergedTransactions, loading: false };
   }),
-
   on(TransactionActions.importTransactionsFromCsvFailure, (state, { error }) => ({
     ...state,
     error,
+    loading: false,
   })),
 
-  on(TransactionActions.exportTransactionsSuccess, (state) => state),
-  on(TransactionActions.exportTransactionsFailure, (state, { error }) => ({ ...state, error })),
+  on(TransactionActions.exportTransactions, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(TransactionActions.exportTransactionsSuccess, (state) => ({ ...state, loading: false })),
+  on(TransactionActions.exportTransactionsFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
+  })),
 
   on(TransactionActions.refreshSummary, (state) => ({ ...state }))
 );

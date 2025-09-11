@@ -8,6 +8,11 @@ export const selectAllTransactions = createSelector(
   (state) => state.transactions
 );
 
+export const selectTransactionLoading = createSelector(
+  selectTransactionState,
+  (state) => state.loading
+);
+
 export const selectTransactionFilters = createSelector(
   selectTransactionState,
   (state) => state.filters
