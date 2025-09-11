@@ -46,9 +46,17 @@ export class TransactionEffects {
       withLatestFrom(this.store.select((state) => state.transaction.transactions)),
       switchMap(([_, transactions]) => {
         try {
-          const csv = this.convertToCsv(transactions);
-          return of(TransactionActions.exportTransactionsSuccess({ exportedData: csv }));
-        } catch (error) {
+          if (transactions.length === 0) {
+            return of(
+              TransactionActions.exportTransactionsFailure({ error: 'No transactions to export' })
+            );
+          }
+
+          const csvContent = this.convertToCsv(transactions);
+          this.downloadCsv(csvContent, 'transactions.csv');
+
+          return of(TransactionActions.exportTransactionsSuccess({ exportedData: csvContent }));
+        } catch (error: any) {
           return of(TransactionActions.exportTransactionsFailure({ error }));
         }
       })
@@ -116,5 +124,15 @@ export class TransactionEffects {
       )
       .join('\n');
     return `${header}\n${rows}`;
+  }
+
+  private downloadCsv(content: string, filename: string) {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    window.URL.revokeObjectURL(url);
   }
 }

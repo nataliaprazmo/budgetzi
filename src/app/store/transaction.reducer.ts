@@ -63,5 +63,10 @@ export const transactionReducer = createReducer(
     loading: false,
   })),
 
-  on(TransactionActions.refreshSummary, (state) => ({ ...state }))
+  on(TransactionActions.refreshSummary, (state) => ({ ...state })),
+
+  on(TransactionActions.clearAllTransactions, (state) => {
+    localStorage.removeItem('transactions');
+    return { ...state, transactions: [] };
+  })
 );

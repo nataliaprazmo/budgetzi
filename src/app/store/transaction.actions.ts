@@ -63,3 +63,5 @@ export const exportTransactionsFailure = createAction(
   '[Transaction] Export Transactions Failure',
   props<{ error: any }>()
 );
+
+export const clearAllTransactions = createAction('[Transaction] Clear All Transactions');

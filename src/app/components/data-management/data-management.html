@@ -21,38 +21,51 @@
           }
         </button>
 
-        <!-- <button mat-raised-button color="accent"
+        <button
+          mat-raised-button
+          color="accent"
           (click)="importCsv()"
-          [disabled]="isImportingCsv()">
-          <ng-container *ngIf="isImportingCsv(); else importCsvLabel">
-            <mat-spinner diameter="20"></mat-spinner>
-            <span>Importing CSV...</span>
-          </ng-container>
-          <ng-template #importCsvLabel>
-            <span>Import from CSV</span>
-          </ng-template>
+          [disabled]="loading$ | async"
+        >
+          @if (loading$ | async) {
+          <mat-spinner diameter="20"></mat-spinner>
+          <span>Importing CSV...</span>
+          } @else {
+          <span>Import from CSV</span>
+          }
         </button>
 
-        <button mat-raised-button
+        <button
+          mat-raised-button
           (click)="exportCsv()"
-          [disabled]="isExportingCsv() || expenseCount() === 0">
-          <ng-container *ngIf="isExportingCsv(); else exportLabel">
-            <mat-spinner diameter="20"></mat-spinner>
-            <span>Exporting...</span>
-          </ng-container>
-          <ng-template #exportLabel>
-            <span>Export to CSV</span>
-          </ng-template>
-        </button> -->
+          [disabled]="(loading$ | async) || !(transactions$ | async)?.length"
+        >
+          @if (loading$ | async) {
+          <mat-spinner diameter="20"></mat-spinner>
+          <span>Exporting...</span>
+          } @else {
+          <span>Export to CSV</span>
+          }
+        </button>
+
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="clearAllData()"
+          [disabled]="!(transactions$ | async)?.length"
+          class="action-button"
+        >
+          Clear All Data
+        </button>
       </div>
 
-      <!-- <input
+      <input
         #fileInput
         type="file"
         accept=".csv"
         (change)="onFileSelected($event)"
         style="display: none"
-      /> -->
+      />
 
       <div class="help-text">
         <p>
