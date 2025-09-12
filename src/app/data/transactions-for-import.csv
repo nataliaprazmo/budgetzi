@@ -1,0 +1,8 @@
+id,title,category,amount,date,type
+1,Coffee,,12.5,2025-01-02T00:00:00.000Z,expense,Food & Drinks
+2,Bus Ticket,,4.8,2025-01-05T00:00:00.000Z,expense,Transport
+3,Groceries,,120,2025-01-10T00:00:00.000Z,expense,Food & Drinks
+4,Internet Bill,,65,2025-01-15T00:00:00.000Z,expense,Utilities
+5,Salary,,3000,2025-01-01T00:00:00.000Z,income,
+6,Freelance Project,,800,2025-01-12T00:00:00.000Z,income,
+7,Gift from Family,,200,2025-01-20T00:00:00.000Z,income,

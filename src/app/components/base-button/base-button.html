@@ -1,0 +1,14 @@
+<button
+  matButton="outlined"
+  [color]="color"
+  [disabled]="disabled || isLoading"
+  (click)="action.emit()"
+  class="action-button"
+>
+  @if (isLoading) {
+  <mat-spinner diameter="20"></mat-spinner>
+  <span>{{ loadingLabel }}</span>
+  } @else {
+  <span>{{ label }}</span>
+  }
+</button>

@@ -1,0 +1,41 @@
+.balance {
+  color: blue;
+  font-weight: 600;
+}
+
+.sidenav-container {
+  height: 100vh;
+}
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+mat-nav-list {
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-title {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-nav-list button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: start;
+}
+
+mat-nav-list mat-icon {
+  margin-right: 8px;
+}
