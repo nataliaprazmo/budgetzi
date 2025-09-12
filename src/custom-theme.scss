@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@include mat.core();
 
 html {
   color-scheme: light;
@@ -6,9 +7,8 @@ html {
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
-        accent: mat.$violet-palette,
-        warn: mat.$orange-palette,
+        primary: mat.$blue-palette,
+        tertiary: mat.$violet-palette,
       ),
       typography: Roboto,
       density: 0,
@@ -22,4 +22,52 @@ body {
   font: var(--mat-sys-body-medium);
 
   margin: 0;
+}
+
+app-base-button[color='primary'],
+button[color='primary'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-primary),
+      filled-label-text-color: var(--mat-sys-on-primary),
+      filled-state-layer-color: var(--mat-sys-on-primary),
+      filled-ripple-color: var(--mat-sys-on-primary),
+      outlined-outline-color: var(--mat-sys-primary),
+      outlined-label-text-color: var(--mat-sys-primary),
+      outlined-state-layer-color: var(--mat-sys-primary),
+      outlined-ripple-color: var(--mat-sys-primary),
+    )
+  );
+}
+
+app-base-button[color='accent'],
+button[color='accent'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-tertiary),
+      filled-label-text-color: var(--mat-sys-on-tertiary),
+      filled-state-layer-color: var(--mat-sys-on-tertiary),
+      filled-ripple-color: var(--mat-sys-on-tertiary),
+      outlined-outline-color: var(--mat-sys-tertiary),
+      outlined-label-text-color: var(--mat-sys-tertiary),
+      outlined-state-layer-color: var(--mat-sys-tertiary),
+      outlined-ripple-color: var(--mat-sys-tertiary),
+    )
+  );
+}
+
+app-base-button[color='warn'],
+button[color='warn'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: tomato,
+      filled-label-text-color: var(--mat-sys-on-error),
+      filled-state-layer-color: var(--mat-sys-on-error),
+      filled-ripple-color: var(--mat-sys-on-error),
+      outlined-outline-color: tomato,
+      outlined-label-text-color: tomato,
+      outlined-state-layer-color: tomato,
+      outlined-ripple-color: tomato,
+    )
+  );
 }
