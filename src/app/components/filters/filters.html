@@ -1,0 +1,54 @@
+<div class="filters-panel">
+  <div class="filter-item">
+    <label>Transaction Type</label>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-select [(ngModel)]="type" (selectionChange)="applyFilters()">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="income">Income</mat-option>
+        <mat-option value="expense">Expense</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (type === 'expense') {
+  <div class="filter-item">
+    <label>Category</label>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-select [(ngModel)]="category" (selectionChange)="applyFilters()">
+        @for (cat of categories$ | async; track cat) {
+        <mat-option [value]="cat">{{ cat }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  }
+
+  <div class="filter-item date-range">
+    <label>Date</label>
+    <div class="date-inputs">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          [matDatepicker]="pickerFrom"
+          [(ngModel)]="fromDate"
+          (dateChange)="applyFilters()"
+          placeholder="From"
+        />
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          [matDatepicker]="pickerTo"
+          [(ngModel)]="toDate"
+          (dateChange)="applyFilters()"
+          placeholder="To"
+        />
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

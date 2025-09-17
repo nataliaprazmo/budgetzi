@@ -71,3 +71,11 @@ button[color='warn'] {
     )
   );
 }
+
+.cdk-focused {
+  @include mat.button-overrides(
+    (
+      outlined-label-text-color: white,
+    )
+  );
+}
