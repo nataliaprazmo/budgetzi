@@ -16,7 +16,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-kpis',
   imports: [KpiCard, AsyncPipe],
   templateUrl: './kpis.html',
-  styleUrl: './kpis.css',
+  styleUrl: './kpis.scss',
 })
 export class Kpis {
   totalExpenses$: Observable<number>;

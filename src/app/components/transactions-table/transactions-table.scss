@@ -1,0 +1,51 @@
+@use '../../../colors' as colors;
+@use '@angular/material' as mat;
+
+mat-card {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.amount {
+  color: colors.$balance;
+  font-weight: bold;
+}
+
+th.mat-header-cell {
+  text-align: left;
+}
+
+td.mat-cell {
+  vertical-align: middle;
+}
+
+mat-chip {
+  @include mat.chips-overrides(
+    (
+      container-shape-radius: 1000px,
+    )
+  );
+}
+
+mat-chip.income {
+  @include mat.chips-overrides(
+    (
+      label-text-color: colors.$income,
+      outline-color: colors.$income,
+    )
+  );
+}
+
+mat-chip.expense {
+  @include mat.chips-overrides(
+    (
+      label-text-color: colors.$expense,
+      outline-color: colors.$expense,
+    )
+  );
+}

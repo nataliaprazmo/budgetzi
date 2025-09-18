@@ -30,7 +30,7 @@ import { setTransactionFilters } from '../../store/transaction.actions';
     MatNativeDateModule,
   ],
   templateUrl: './filters.html',
-  styleUrl: './filters.css',
+  styleUrl: './filters.scss',
 })
 export class Filters {
   type: 'all' | 'income' | 'expense' = 'all';

@@ -19,7 +19,7 @@ import { ActionButtons } from '../action-buttons/action-buttons';
   selector: 'app-data-management',
   imports: [MatCardModule, AsyncPipe, MatSnackBarModule, ActionButtons],
   templateUrl: './data-management.html',
-  styleUrl: './data-management.css',
+  styleUrl: './data-management.scss',
 })
 export class DataManagement {
   transactions$: Observable<Transaction[]>;

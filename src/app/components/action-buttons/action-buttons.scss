@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+@use '../../../colors' as colors;
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+app-base-button[color='primary'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-primary),
+      filled-label-text-color: var(--mat-sys-on-primary),
+      filled-state-layer-color: var(--mat-sys-on-primary),
+      filled-ripple-color: var(--mat-sys-on-primary),
+      outlined-outline-color: var(--mat-sys-primary),
+      outlined-label-text-color: var(--mat-sys-primary),
+      outlined-state-layer-color: var(--mat-sys-primary),
+      outlined-ripple-color: var(--mat-sys-primary),
+    )
+  );
+}
+
+app-base-button[color='accent'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-tertiary),
+      filled-label-text-color: var(--mat-sys-on-tertiary),
+      filled-state-layer-color: var(--mat-sys-on-tertiary),
+      filled-ripple-color: var(--mat-sys-on-tertiary),
+      outlined-outline-color: var(--mat-sys-tertiary),
+      outlined-label-text-color: var(--mat-sys-tertiary),
+      outlined-state-layer-color: var(--mat-sys-tertiary),
+      outlined-ripple-color: var(--mat-sys-tertiary),
+    )
+  );
+}
+
+app-base-button[color='warn'] {
+  @include mat.button-overrides(
+    (
+      filled-container-color: colors.$expense,
+      filled-label-text-color: var(--mat-sys-on-error),
+      filled-state-layer-color: var(--mat-sys-on-error),
+      filled-ripple-color: var(--mat-sys-on-error),
+      outlined-outline-color: colors.$expense,
+      outlined-label-text-color: colors.$expense,
+      outlined-state-layer-color: colors.$expense,
+      outlined-ripple-color: colors.$expense,
+    )
+  );
+}

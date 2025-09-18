@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-kpi-card',
   imports: [MatCardModule, CommonModule],
   templateUrl: './kpi-card.html',
-  styleUrl: './kpi-card.css',
+  styleUrl: './kpi-card.scss',
 })
 export class KpiCard {
   @Input() label!: string;

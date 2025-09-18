@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use '../../../colors' as colors;
+
+.cdk-focused {
+  @include mat.button-overrides(
+    (
+      outlined-label-text-color: white,
+    )
+  );
+}
+
+.cdk-focused.mat-primary {
+  background-color: colors.$balance;
+}
+
+.cdk-focused.mat-accent {
+  background-color: var(--mat-sys-tertiary);
+}
+
+.cdk-focused.mat-warn {
+  background-color: colors.$expense;
+}
