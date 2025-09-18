@@ -24,7 +24,7 @@ import { selectBalance } from './store/transaction.selectors';
     MatListModule,
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('💰 Budgetzi');

@@ -6,7 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   selector: 'app-base-button',
   imports: [MatButtonModule, MatProgressSpinnerModule],
   templateUrl: './base-button.html',
-  styleUrl: './base-button.css',
+  styleUrl: './base-button.scss',
 })
 export class BaseButton {
   @Input() label!: string;

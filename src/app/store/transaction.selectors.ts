@@ -8,6 +8,18 @@ export const selectAllTransactions = createSelector(
   (state) => state.transactions
 );
 
+export const selectTransactionsLoaded = createSelector(
+  selectAllTransactions,
+  (transactions) => Array.isArray(transactions) && transactions.length > 0
+);
+
+export const selectExpenseCategories = createSelector(selectAllTransactions, (transactions) =>
+  transactions
+    .filter((t) => t.type === 'expense' && 'category' in t)
+    .map((t) => (t as any).category)
+    .filter((v, i, a) => a.indexOf(v) === i)
+);
+
 export const selectTransactionLoading = createSelector(
   selectTransactionState,
   (state) => state.loading

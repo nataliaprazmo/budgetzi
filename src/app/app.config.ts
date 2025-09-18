@@ -10,6 +10,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { transactionReducer } from './store/transaction.reducer';
 import { TransactionEffects } from './store/transaction.effects';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({ transaction: transactionReducer }),
-    provideEffects([TransactionEffects]),
+    provideEffects([TransactionEffects]), provideCharts(withDefaultRegisterables()),
   ],
 };

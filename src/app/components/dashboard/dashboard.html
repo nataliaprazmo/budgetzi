@@ -1,0 +1,12 @@
+<div class="dashboard-container">
+  <app-data-management />
+  @if (isLoaded$ | async) {
+  <div class="top-row">
+    <app-kpis />
+    <app-filters />
+  </div>
+  <app-transactions-table />
+  } @else {
+  <div class="no-transactions">No transactions</div>
+  }
+</div>

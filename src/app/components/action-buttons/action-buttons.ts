@@ -5,7 +5,7 @@ import { BaseButton } from '../base-button/base-button';
   selector: 'app-action-buttons',
   imports: [BaseButton],
   templateUrl: './action-buttons.html',
-  styleUrl: './action-buttons.css',
+  styleUrl: './action-buttons.scss',
 })
 export class ActionButtons {
   @Input() isLoading: boolean = false;

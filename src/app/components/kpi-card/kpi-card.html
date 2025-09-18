@@ -1,0 +1,6 @@
+<mat-card class="kpi-card">
+  <div class="kpi-content">
+    <div class="kpi-label">{{ label | uppercase }}</div>
+    <div [ngStyle]="{ color: color }" class="kpi-value">{{ value | currency }}</div>
+  </div>
+</mat-card>
