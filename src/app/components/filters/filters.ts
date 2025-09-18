@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDatepickerModule,
+  MatDateRangeInput,
+  MatDateRangePicker,
+} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -21,6 +25,8 @@ import { setTransactionFilters } from '../../store/transaction.actions';
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
+    MatDateRangeInput,
+    MatDateRangePicker,
     MatNativeDateModule,
   ],
   templateUrl: './filters.html',
@@ -28,7 +34,7 @@ import { setTransactionFilters } from '../../store/transaction.actions';
 })
 export class Filters {
   type: 'all' | 'income' | 'expense' = 'all';
-  category: string | null = null;
+  category: string | 'all' | null = 'all';
   fromDate: Date | null = null;
   toDate: Date | null = null;
 
@@ -41,7 +47,7 @@ export class Filters {
   applyFilters() {
     const filters: any = {
       type: this.type !== 'all' ? this.type : undefined,
-      category: this.type === 'expense' ? this.category : undefined,
+      category: this.type === 'expense' && this.category !== 'all' ? this.category : undefined,
       fromDate: this.fromDate ?? undefined,
       toDate: this.toDate ?? undefined,
     };

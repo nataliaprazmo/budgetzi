@@ -12,3 +12,11 @@
   color: #777;
   margin-top: 2rem;
 }
+
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 6rem;
+  width: 100%;
+}

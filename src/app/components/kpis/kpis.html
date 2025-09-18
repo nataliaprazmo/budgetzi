@@ -1,10 +1,10 @@
 <div class="kpis-container">
   @let totalExpenses = (totalExpenses$ | async) ?? 0;
-  <app-kpi-card label="Total Expenses" [value]="totalExpenses" color="#ffd1d8" />
+  <app-kpi-card label="Total Expenses" [value]="totalExpenses" color="#F7374F" />
 
   @let totalIncomes = (totalIncomes$ | async) ?? 0;
-  <app-kpi-card label="Total Incomes" [value]="totalIncomes" color="#d1ffd5" />
+  <app-kpi-card label="Total Incomes" [value]="totalIncomes" color="#1DCD9F" />
 
   @let totalBalance = (totalBalance$ | async) ?? 0;
-  <app-kpi-card label="Total Balance" [value]="totalBalance" color="#c2d3ff" />
+  <app-kpi-card label="Total Balance" [value]="totalBalance" color="#6F00FF" />
 </div>
