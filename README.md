@@ -2,6 +2,15 @@
 
 A simple and impressive **Angular + Angular Material** project that helps track expenses and income, while showcasing core Angular features.
 
+## Tools & technologies
+
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Angular Material](https://img.shields.io/badge/Angular%20Material-E53935?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![NgRx Store](https://img.shields.io/badge/NgRx%20Store-E23237?style=for-the-badge&logo=ngrx&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
 ## ✅ Implemented Features
 
 ### 1. Transactions Table
