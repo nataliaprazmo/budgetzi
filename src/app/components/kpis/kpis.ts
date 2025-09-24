@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { KpiCard } from '../kpi-card/kpi-card';
 import { Observable } from 'rxjs';
-import { Transaction } from '../../types/transaction.types';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import {
   selectFilteredBalance,
   selectFilteredTotalExpenses,
   selectFilteredTotalIncome,
-  selectFilteredTransactions,
 } from '../../store/transaction.selectors';
 import { AsyncPipe } from '@angular/common';
 

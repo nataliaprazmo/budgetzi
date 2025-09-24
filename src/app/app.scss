@@ -31,11 +31,12 @@ mat-nav-list {
   flex: 1 1 auto;
 }
 
-mat-nav-list button {
+mat-nav-list button a {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: start;
+  text-decoration: none;
 }
 
 mat-nav-list mat-icon {

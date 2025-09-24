@@ -2,12 +2,13 @@
   <mat-sidenav #drawer mode="over">
     <mat-nav-list>
       <button mat-button (click)="drawer.close()">
-        <mat-icon>add</mat-icon>
-        <span>Add Transaction</span>
+        <a routerLink="/add">
+          <mat-icon>add</mat-icon>
+          <span>Add Transaction</span></a
+        >
       </button>
       <button mat-button (click)="drawer.close()">
-        <mat-icon>analytics</mat-icon>
-        <span>View Summary</span>
+        <a routerLink="/"><mat-icon>analytics</mat-icon> <span>View Summary</span></a>
       </button>
     </mat-nav-list>
   </mat-sidenav>

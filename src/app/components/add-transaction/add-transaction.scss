@@ -1,0 +1,42 @@
+.add-transaction-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.type-toggle {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+
+  ::ng-deep {
+    .mat-button-toggle {
+      flex: 1;
+
+      .mat-button-toggle-label-content {
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .full-width {
+    width: 100%;
+  }
+
+  button[mat-raised-button] {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+}

@@ -1,0 +1,57 @@
+<div class="add-transaction-container">
+  <mat-button-toggle-group
+    [value]="type()"
+    (change)="changeType($event.value)"
+    exclusive
+    class="type-toggle"
+  >
+    <mat-button-toggle value="income">Income</mat-button-toggle>
+    <mat-button-toggle value="expense">Expense</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="transaction-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    @if (type() === 'expense') {
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Category</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="category"
+        [matAutocomplete]="auto"
+        placeholder="Choose or type new"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (cat of categories$ | async; track cat) {
+        <mat-option [value]="cat">{{ cat }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    }
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Add Transaction
+    </button>
+  </form>
+</div>
