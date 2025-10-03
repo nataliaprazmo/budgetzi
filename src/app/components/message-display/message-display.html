@@ -1,0 +1,11 @@
+@if (showSuccessMessage) {
+<div class="message success-message">
+  <mat-icon>check_circle</mat-icon>
+  <span>Transaction added successfully!</span>
+</div>
+} @if (showErrorMessage) {
+<div class="message error-message">
+  <mat-icon>error</mat-icon>
+  <span>{{ errorMessage }}</span>
+</div>
+}

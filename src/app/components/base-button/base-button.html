@@ -1,7 +1,8 @@
 <button
-  matButton="outlined"
+  [matButton]="variant"
   [color]="color"
   [disabled]="disabled || isLoading"
+  [type]="buttonType"
   (click)="action.emit()"
   class="action-button"
 >

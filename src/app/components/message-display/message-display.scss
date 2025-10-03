@@ -1,0 +1,26 @@
+.message {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+
+  mat-icon {
+    margin-right: 0.75rem;
+    font-size: 20px;
+  }
+}
+
+.success-message {
+  background-color: #e8f5e8;
+  color: #2e7d2e;
+  border-left: 4px solid #4caf50;
+}
+
+.error-message {
+  background-color: #ffeaea;
+  color: #c62828;
+  border-left: 4px solid #f44336;
+}

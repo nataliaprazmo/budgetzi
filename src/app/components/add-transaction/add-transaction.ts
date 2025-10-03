@@ -10,11 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { selectExpenseCategories } from '../../store/transaction.selectors';
 import { MatIconModule } from '@angular/material/icon';
+import { TransactionTypeToggle } from '../transaction-type-toggle/transaction-type-toggle';
+import { MessageDisplay } from '../message-display/message-display';
+import { SubmitButton } from '../submit-button/submit-button';
 
 @Component({
   selector: 'app-add-transaction',
@@ -25,10 +27,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonToggleModule,
+    TransactionTypeToggle,
     MatAutocompleteModule,
     AsyncPipe,
     MatIconModule,
+    MessageDisplay,
+    SubmitButton,
   ],
   templateUrl: './add-transaction.html',
   styleUrl: './add-transaction.scss',
@@ -55,6 +59,10 @@ export class AddTransaction {
     date: [new Date(), Validators.required],
     category: [''],
   });
+
+  onTypeChanged(newType: 'income' | 'expense') {
+    this.changeType(newType);
+  }
 
   changeType(newType: 'income' | 'expense') {
     this.type.set(newType);
