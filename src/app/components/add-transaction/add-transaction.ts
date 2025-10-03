@@ -14,6 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { selectExpenseCategories } from '../../store/transaction.selectors';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-transaction',
@@ -27,6 +28,7 @@ import { selectExpenseCategories } from '../../store/transaction.selectors';
     MatButtonToggleModule,
     MatAutocompleteModule,
     AsyncPipe,
+    MatIconModule,
   ],
   templateUrl: './add-transaction.html',
   styleUrl: './add-transaction.scss',
@@ -34,6 +36,11 @@ import { selectExpenseCategories } from '../../store/transaction.selectors';
 export class AddTransaction {
   private formBuilder = inject(FormBuilder);
   categories$: Observable<string[]>;
+
+  showSuccessMessage = signal(false);
+  showErrorMessage = signal(false);
+  errorMessage = signal('');
+  isSubmitting = signal(false);
 
   constructor(private store: Store<{ transaction: TransactionState }>) {
     this.categories$ = this.store.select(selectExpenseCategories);
@@ -54,26 +61,79 @@ export class AddTransaction {
     if (newType === 'income') {
       this.form.get('category')?.disable();
       this.form.get('category')?.setValue(null);
+      this.form.get('category')?.clearValidators();
     } else {
       this.form.get('category')?.enable();
+      this.form.get('category')?.setValidators([Validators.required]);
+    }
+    this.form.get('category')?.updateValueAndValidity();
+    this.hideMessages();
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.showError('Please fill in all required fields correctly.');
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.isSubmitting.set(true);
+    this.hideMessages();
+
+    try {
+      const raw = this.form.getRawValue();
+
+      const transaction: Transaction = {
+        id: crypto.randomUUID(),
+        title: raw.title!,
+        description: raw.description || '',
+        amount: raw.amount!,
+        date: raw.date!,
+        type: this.type(),
+        ...(this.type() === 'expense' ? { category: raw.category! } : {}),
+      } as Transaction;
+
+      this.store.dispatch(addTransaction({ transaction }));
+      this.resetForm();
+      this.showSuccess();
+    } catch (error) {
+      this.showError('An error occurred while adding the transaction. Please try again.');
+    } finally {
+      this.isSubmitting.set(false);
     }
   }
-  onSubmit() {
-    if (this.form.invalid) return;
 
-    const raw = this.form.getRawValue();
+  private showSuccess() {
+    this.showSuccessMessage.set(true);
+    this.showErrorMessage.set(false);
 
-    const transaction: Transaction = {
-      id: crypto.randomUUID(),
-      title: raw.title!,
-      description: raw.description || '',
-      amount: raw.amount!,
-      date: raw.date!,
-      type: this.type(),
-      ...(this.type() === 'expense' ? { category: raw.category! } : {}),
-    } as Transaction;
+    setTimeout(() => {
+      this.showSuccessMessage.set(false);
+    }, 3000);
+  }
 
-    this.store.dispatch(addTransaction({ transaction }));
-    this.form.reset({ date: new Date(), amount: 0 });
+  private showError(message: string) {
+    this.errorMessage.set(message);
+    this.showErrorMessage.set(true);
+    this.showSuccessMessage.set(false);
+
+    setTimeout(() => {
+      this.showErrorMessage.set(false);
+    }, 5000);
+  }
+
+  private hideMessages() {
+    this.showSuccessMessage.set(false);
+    this.showErrorMessage.set(false);
+  }
+
+  private resetForm() {
+    this.form.reset({
+      title: '',
+      description: '',
+      amount: 0,
+      date: new Date(),
+      category: undefined,
+    });
   }
 }

@@ -13,6 +13,9 @@
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" required />
+      @let title = form.get('title'); @if (title?.invalid && (title?.dirty || title?.touched)) {
+      <mat-error>Title is required</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
@@ -23,13 +26,22 @@
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Amount</mat-label>
       <input matInput type="number" formControlName="amount" required />
+      @let amount = form.get('amount'); @if (amount?.invalid && (amount?.dirty||amount?.touched)) {
+      <mat-error>
+        @if (amount?.errors?.['required']) { Amount is required } @else if (amount?.errors?.['min'])
+        { Amount must be greater than 0 }
+      </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Date</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" required />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker #picker></mat-datepicker>@let date=form.get('date'); @if (date?.invalid &&(
+      date?.touched||date?.dirty)) {
+      <mat-error>Date is required</mat-error>
+      }
     </mat-form-field>
 
     @if (type() === 'expense') {
@@ -45,13 +57,33 @@
       <mat-autocomplete #auto="matAutocomplete">
         @for (cat of categories$ | async; track cat) {
         <mat-option [value]="cat">{{ cat }}</mat-option>
-        }
-      </mat-autocomplete>
+        } </mat-autocomplete
+      >@let category=form.get('category'); @if (category?.invalid && (category?.dirty ||
+      category?.touched)) {
+      <mat-error>Category is required for expenses</mat-error>
+      }
     </mat-form-field>
     }
 
     <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-      Add Transaction
+      @if (isSubmitting()) {
+      <ng-container>
+        <mat-icon>hourglass_empty</mat-icon>
+        Adding...
+      </ng-container>
+      } @else { Add Transaction }
     </button>
+
+    @if (showSuccessMessage()) {
+    <div class="message success-message">
+      <mat-icon>check_circle</mat-icon>
+      <span>Transaction added successfully!</span>
+    </div>
+    } @if (showErrorMessage()) {
+    <div class="message error-message">
+      <mat-icon>error</mat-icon>
+      <span>{{ errorMessage() }}</span>
+    </div>
+    }
   </form>
 </div>
