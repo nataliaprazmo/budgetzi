@@ -1,0 +1,27 @@
+<div class="filter-section">
+  <span class="filter-label">Filter by type:</span>
+  <mat-chip-listbox [(ngModel)]="selectedTypeFilter" (ngModelChange)="onTypeFilterChange($event)">
+    <mat-chip-option value="all" [selected]="selectedTypeFilter === 'all'"> All </mat-chip-option>
+    <mat-chip-option value="income" [selected]="selectedTypeFilter === 'income'">
+      Income
+    </mat-chip-option>
+    <mat-chip-option value="expense" [selected]="selectedTypeFilter === 'expense'">
+      Expense
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  @if (selectedTypeFilter === 'expense') {
+  <mat-form-field appearance="outline" class="category-filter">
+    <mat-label>Category</mat-label>
+    <mat-select
+      [(ngModel)]="selectedCategoryFilter"
+      (ngModelChange)="onCategoryFilterChange($event)"
+    >
+      <mat-option value="all">All Categories</mat-option>
+      @for (category of availableCategories; track category) {
+      <mat-option [value]="category">{{ category }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  }
+</div>

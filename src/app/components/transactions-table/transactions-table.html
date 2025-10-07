@@ -1,8 +1,15 @@
 <mat-card>
   <mat-card-title>Transactions</mat-card-title>
   <mat-card-content>
-    @let transactions = transactions$ | async; @if (transactions){
-    <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+    <app-transactions-table-filters
+      [selectedTypeFilter]="selectedTypeFilter"
+      [selectedCategoryFilter]="selectedCategoryFilter"
+      [availableCategories]="availableCategories"
+      (typeFilterChange)="setTypeFilter($event)"
+      (categoryFilterChange)="setCategoryFilter($event)"
+    />
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>Type</th>
         <td mat-cell *matCellDef="let transaction">
@@ -15,7 +22,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
         <td mat-cell *matCellDef="let transaction">
           {{ transaction.title }}
         </td>
@@ -39,7 +46,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
         <td mat-cell *matCellDef="let transaction">
           @if (transaction.type === 'income'){
           <span class="amount">{{ transaction.amount | currency }}</span>
@@ -49,16 +56,22 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
         <td mat-cell *matCellDef="let transaction">
           {{ transaction.date | date : 'shortDate' }}
         </td>
       </ng-container>
-
       @let columnsToDisplay = ['title', 'type','description','category','amount','date'];
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
-    }
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 50]"
+      [pageSize]="10"
+      showFirstLastButtons
+      aria-label="Select page of transactions"
+    >
+    </mat-paginator>
   </mat-card-content>
 </mat-card>
