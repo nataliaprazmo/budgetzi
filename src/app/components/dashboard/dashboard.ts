@@ -8,10 +8,11 @@ import { TransactionState } from '../../types/transaction-states.types';
 import { AsyncPipe } from '@angular/common';
 import { Filters } from '../filters/filters';
 import { TransactionsTable } from '../transactions-table/transactions-table';
+import { Charts } from '../charts/charts';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DataManagement, Filters, Kpis, AsyncPipe, TransactionsTable],
+  imports: [DataManagement, Filters, Kpis, AsyncPipe, TransactionsTable, Charts],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

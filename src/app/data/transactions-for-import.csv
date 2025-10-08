@@ -1,8 +1,132 @@
-id,title,category,amount,date,type
-1,Coffee,,12.5,2025-01-02T00:00:00.000Z,expense,Food & Drinks
-2,Bus Ticket,,4.8,2025-01-05T00:00:00.000Z,expense,Transport
-3,Groceries,,120,2025-01-10T00:00:00.000Z,expense,Food & Drinks
-4,Internet Bill,,65,2025-01-15T00:00:00.000Z,expense,Utilities
-5,Salary,,3000,2025-01-01T00:00:00.000Z,income,
-6,Freelance Project,,800,2025-01-12T00:00:00.000Z,income,
-7,Gift from Family,,200,2025-01-20T00:00:00.000Z,income,
+id,title,amount,date,type
+1,Monthly Salary,,5000,2025-01-01T00:00:00.000Z,income,
+2,Freelance Web Design,,650,2025-01-15T00:00:00.000Z,income,
+3,Grocery Shopping,,380,2025-01-03T00:00:00.000Z,expense,Food & Drinks
+4,Restaurant Dinner,,85,2025-01-07T00:00:00.000Z,expense,Food & Drinks
+5,Weekly Groceries,,420,2025-01-12T00:00:00.000Z,expense,Food & Drinks
+6,Coffee & Lunch,,45,2025-01-16T00:00:00.000Z,expense,Food & Drinks
+7,Grocery Shopping,,350,2025-01-22T00:00:00.000Z,expense,Food & Drinks
+8,Takeout Food,,65,2025-01-28T00:00:00.000Z,expense,Food & Drinks
+9,Electricity Bill,,180,2025-01-05T00:00:00.000Z,expense,Utilities
+10,Internet & Phone,,95,2025-01-08T00:00:00.000Z,expense,Utilities
+11,Water Bill,,65,2025-01-12T00:00:00.000Z,expense,Utilities
+12,Heating Gas,,220,2025-01-18T00:00:00.000Z,expense,Utilities
+13,Streaming Services,,35,2025-01-20T00:00:00.000Z,expense,Utilities
+14,Monthly Bus Pass,,120,2025-01-02T00:00:00.000Z,expense,Transport
+15,Taxi Ride,,28,2025-01-14T00:00:00.000Z,expense,Transport
+16,Gas Station,,75,2025-01-25T00:00:00.000Z,expense,Transport
+17,Gym Membership,,45,2025-01-06T00:00:00.000Z,expense,Health & Fitness
+18,Books,,35,2025-01-11T00:00:00.000Z,expense,Entertainment
+19,Haircut,,30,2025-01-19T00:00:00.000Z,expense,Personal Care
+20,Monthly Salary,,5000,2025-02-01T00:00:00.000Z,income,
+21,Consulting Work,,950,2025-02-18T00:00:00.000Z,income,
+22,Grocery Shopping,,395,2025-02-04T00:00:00.000Z,expense,Food & Drinks
+23,Valentine's Dinner,,120,2025-02-14T00:00:00.000Z,expense,Food & Drinks
+24,Weekly Groceries,,410,2025-02-10T00:00:00.000Z,expense,Food & Drinks
+25,Cafe & Bakery,,52,2025-02-17T00:00:00.000Z,expense,Food & Drinks
+26,Grocery Shopping,,365,2025-02-23T00:00:00.000Z,expense,Food & Drinks
+27,Pizza Night,,48,2025-02-26T00:00:00.000Z,expense,Food & Drinks
+28,Electricity Bill,,165,2025-02-05T00:00:00.000Z,expense,Utilities
+29,Internet & Phone,,95,2025-02-08T00:00:00.000Z,expense,Utilities
+30,Water Bill,,58,2025-02-12T00:00:00.000Z,expense,Utilities
+31,Heating Gas,,210,2025-02-15T00:00:00.000Z,expense,Utilities
+32,Streaming Services,,35,2025-02-20T00:00:00.000Z,expense,Utilities
+33,Monthly Bus Pass,,120,2025-02-01T00:00:00.000Z,expense,Transport
+34,Uber Rides,,42,2025-02-13T00:00:00.000Z,expense,Transport
+35,Gas Station,,68,2025-02-22T00:00:00.000Z,expense,Transport
+36,Gym Membership,,45,2025-02-06T00:00:00.000Z,expense,Health & Fitness
+37,Movie Tickets,,28,2025-02-16T00:00:00.000Z,expense,Entertainment
+38,Pharmacy,,42,2025-02-21T00:00:00.000Z,expense,Health & Fitness
+39,Monthly Salary,,5000,2025-03-01T00:00:00.000Z,income,
+40,Side Project Payment,,1200,2025-03-20T00:00:00.000Z,income,
+41,Grocery Shopping,,425,2025-03-05T00:00:00.000Z,expense,Food & Drinks
+42,Brunch with Friends,,75,2025-03-09T00:00:00.000Z,expense,Food & Drinks
+43,Weekly Groceries,,390,2025-03-12T00:00:00.000Z,expense,Food & Drinks
+44,Restaurant Dinner,,95,2025-03-18T00:00:00.000Z,expense,Food & Drinks
+45,Grocery Shopping,,405,2025-03-24T00:00:00.000Z,expense,Food & Drinks
+46,Coffee & Snacks,,38,2025-03-29T00:00:00.000Z,expense,Food & Drinks
+47,Electricity Bill,,145,2025-03-05T00:00:00.000Z,expense,Utilities
+48,Internet & Phone,,95,2025-03-08T00:00:00.000Z,expense,Utilities
+49,Water Bill,,62,2025-03-11T00:00:00.000Z,expense,Utilities
+50,Heating Gas,,185,2025-03-15T00:00:00.000Z,expense,Utilities
+51,Streaming Services,,35,2025-03-20T00:00:00.000Z,expense,Utilities
+52,Monthly Bus Pass,,120,2025-03-02T00:00:00.000Z,expense,Transport
+53,Car Maintenance,,180,2025-03-14T00:00:00.000Z,expense,Transport
+54,Gas Station,,82,2025-03-26T00:00:00.000Z,expense,Transport
+55,Gym Membership,,45,2025-03-06T00:00:00.000Z,expense,Health & Fitness
+56,Concert Tickets,,85,2025-03-22T00:00:00.000Z,expense,Entertainment
+57,Clothing,,120,2025-03-27T00:00:00.000Z,expense,Shopping
+58,Monthly Salary,,5000,2025-04-01T00:00:00.000Z,income,
+59,Tax Refund,,450,2025-04-10T00:00:00.000Z,income,
+60,Grocery Shopping,,385,2025-04-03T00:00:00.000Z,expense,Food & Drinks
+61,Easter Dinner,,145,2025-04-20T00:00:00.000Z,expense,Food & Drinks
+62,Weekly Groceries,,415,2025-04-11T00:00:00.000Z,expense,Food & Drinks
+63,Food Delivery,,58,2025-04-16T00:00:00.000Z,expense,Food & Drinks
+64,Grocery Shopping,,395,2025-04-25T00:00:00.000Z,expense,Food & Drinks
+65,Cafe & Lunch,,42,2025-04-28T00:00:00.000Z,expense,Food & Drinks
+66,Electricity Bill,,125,2025-04-05T00:00:00.000Z,expense,Utilities
+67,Internet & Phone,,95,2025-04-08T00:00:00.000Z,expense,Utilities
+68,Water Bill,,59,2025-04-12T00:00:00.000Z,expense,Utilities
+69,Heating Gas,,110,2025-04-15T00:00:00.000Z,expense,Utilities
+70,Streaming Services,,35,2025-04-20T00:00:00.000Z,expense,Utilities
+71,Monthly Bus Pass,,120,2025-04-01T00:00:00.000Z,expense,Transport
+72,Taxi Rides,,35,2025-04-13T00:00:00.000Z,expense,Transport
+73,Gas Station,,78,2025-04-24T00:00:00.000Z,expense,Transport
+74,Gym Membership,,45,2025-04-06T00:00:00.000Z,expense,Health & Fitness
+75,Online Course,,99,2025-04-14T00:00:00.000Z,expense,Education
+76,Dentist Appointment,,150,2025-04-22T00:00:00.000Z,expense,Health & Fitness
+77,Monthly Salary,,5000,2025-05-01T00:00:00.000Z,income,
+78,Freelance Writing,,550,2025-05-22T00:00:00.000Z,income,
+79,Grocery Shopping,,410,2025-05-04T00:00:00.000Z,expense,Food & Drinks
+80,Mother's Day Brunch,,110,2025-05-11T00:00:00.000Z,expense,Food & Drinks
+81,Weekly Groceries,,398,2025-05-13T00:00:00.000Z,expense,Food & Drinks
+82,BBQ Supplies,,88,2025-05-19T00:00:00.000Z,expense,Food & Drinks
+83,Grocery Shopping,,375,2025-05-26T00:00:00.000Z,expense,Food & Drinks
+84,Ice Cream & Treats,,32,2025-05-30T00:00:00.000Z,expense,Food & Drinks
+85,Electricity Bill,,105,2025-05-05T00:00:00.000Z,expense,Utilities
+86,Internet & Phone,,95,2025-05-08T00:00:00.000Z,expense,Utilities
+87,Water Bill,,61,2025-05-12T00:00:00.000Z,expense,Utilities
+88,Streaming Services,,35,2025-05-20T00:00:00.000Z,expense,Utilities
+89,Monthly Bus Pass,,120,2025-05-02T00:00:00.000Z,expense,Transport
+90,Gas Station,,85,2025-05-15T00:00:00.000Z,expense,Transport
+91,Parking Fee,,25,2025-05-23T00:00:00.000Z,expense,Transport
+92,Gym Membership,,45,2025-05-06T00:00:00.000Z,expense,Health & Fitness
+93,Garden Supplies,,78,2025-05-17T00:00:00.000Z,expense,Shopping
+94,Book Store,,45,2025-05-25T00:00:00.000Z,expense,Entertainment
+95,Monthly Salary,,5000,2025-06-01T00:00:00.000Z,income,
+96,Bonus,,1500,2025-06-15T00:00:00.000Z,income,
+97,Grocery Shopping,,405,2025-06-05T00:00:00.000Z,expense,Food & Drinks
+98,Father's Day Dinner,,125,2025-06-15T00:00:00.000Z,expense,Food & Drinks
+99,Weekly Groceries,,385,2025-06-12T00:00:00.000Z,expense,Food & Drinks
+100,Summer BBQ,,95,2025-06-21T00:00:00.000Z,expense,Food & Drinks
+101,Grocery Shopping,,390,2025-06-26T00:00:00.000Z,expense,Food & Drinks
+102,Ice Cream & Drinks,,42,2025-06-29T00:00:00.000Z,expense,Food & Drinks
+103,Electricity Bill,,135,2025-06-05T00:00:00.000Z,expense,Utilities
+104,Internet & Phone,,95,2025-06-08T00:00:00.000Z,expense,Utilities
+105,Water Bill,,68,2025-06-12T00:00:00.000Z,expense,Utilities
+106,Streaming Services,,35,2025-06-20T00:00:00.000Z,expense,Utilities
+107,Monthly Bus Pass,,120,2025-06-02T00:00:00.000Z,expense,Transport
+108,Gas Station,,92,2025-06-14T00:00:00.000Z,expense,Transport
+109,Uber to Airport,,55,2025-06-27T00:00:00.000Z,expense,Transport
+110,Gym Membership,,45,2025-06-06T00:00:00.000Z,expense,Health & Fitness
+111,Summer Clothes,,165,2025-06-18T00:00:00.000Z,expense,Shopping
+112,Beach Equipment,,89,2025-06-24T00:00:00.000Z,expense,Shopping
+113,Monthly Salary,,5000,2025-07-01T00:00:00.000Z,income,
+114,Vacation Rental Income,,800,2025-07-18T00:00:00.000Z,income,
+115,Grocery Shopping,,395,2025-07-03T00:00:00.000Z,expense,Food & Drinks
+116,4th of July BBQ,,135,2025-07-04T00:00:00.000Z,expense,Food & Drinks
+117,Weekly Groceries,,410,2025-07-10T00:00:00.000Z,expense,Food & Drinks
+118,Waterfront Restaurant,,98,2025-07-16T00:00:00.000Z,expense,Food & Drinks
+119,Grocery Shopping,,385,2025-07-23T00:00:00.000Z,expense,Food & Drinks
+120,Summer Picnic,,68,2025-07-28T00:00:00.000Z,expense,Food & Drinks
+121,Electricity Bill (AC),,185,2025-07-05T00:00:00.000Z,expense,Utilities
+122,Internet & Phone,,95,2025-07-08T00:00:00.000Z,expense,Utilities
+123,Water Bill,,72,2025-07-12T00:00:00.000Z,expense,Utilities
+124,Streaming Services,,35,2025-07-20T00:00:00.000Z,expense,Utilities
+125,Monthly Bus Pass,,120,2025-07-02T00:00:00.000Z,expense,Transport
+126,Gas Station,,105,2025-07-13T00:00:00.000Z,expense,Transport
+127,Weekend Road Trip Gas,,88,2025-07-26T00:00:00.000Z,expense,Transport
+128,Gym Membership,,45,2025-07-06T00:00:00.000Z,expense,Health & Fitness
+129,Sunglasses,,85,2025-07-14T00:00:00.000Z,expense,Shopping
+130,Outdoor Concert,,75,2025-07-19T00:00:00.000Z,expense,Entertainment
+131,Swimming Pool Pass,,50,2025-07-25T00:00:00.000Z,expense,Entertainment

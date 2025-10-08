@@ -81,3 +81,56 @@ export const selectFilteredBalance = createSelector(
   selectFilteredTotalExpenses,
   (income, expenses) => income - expenses
 );
+
+export const selectExpensesByMonth = createSelector(selectFilteredTransactions, (transactions) => {
+  const grouped: Record<string, number> = {};
+
+  transactions
+    .filter((t) => t.type === 'expense')
+    .forEach((transaction) => {
+      const date = new Date(transaction.date);
+      const monthLabel = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      grouped[monthLabel] = (grouped[monthLabel] || 0) + transaction.amount;
+    });
+
+  return grouped;
+});
+
+export const selectIncomeByMonth = createSelector(selectFilteredTransactions, (transactions) => {
+  const grouped: Record<string, number> = {};
+
+  transactions
+    .filter((t) => t.type === 'income')
+    .forEach((transaction) => {
+      const date = new Date(transaction.date);
+      const monthLabel = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      grouped[monthLabel] = (grouped[monthLabel] || 0) + transaction.amount;
+    });
+
+  return grouped;
+});
+
+export const selectChartData = createSelector(
+  selectExpensesByMonth,
+  selectIncomeByMonth,
+  (expenses, income) => {
+    const allMonths = new Set([...Object.keys(expenses), ...Object.keys(income)]);
+    const sortedMonths = Array.from(allMonths).sort((a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+
+    return {
+      labels: sortedMonths,
+      expenseData: sortedMonths.map((month) => expenses[month] || 0),
+      incomeData: sortedMonths.map((month) => income[month] || 0),
+    };
+  }
+);

@@ -18,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({ transaction: transactionReducer }),
-    provideEffects([TransactionEffects]), provideCharts(withDefaultRegisterables()),
+    provideEffects([TransactionEffects]),
+    provideCharts(withDefaultRegisterables()),
   ],
 };
