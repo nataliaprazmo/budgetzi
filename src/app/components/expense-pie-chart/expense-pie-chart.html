@@ -1,15 +1,17 @@
 <div class="chart-container" style="display: block; height: 400px">
-  @let chartData = chartData$ | async; @if (chartData) {
+  @let chartData = chartData$ | async; @if (chartData && chartData.labels && chartData.labels.length
+  > 0) {
   <canvas
     baseChart
     [type]="chartType"
     [data]="chartData"
-    [options]="lineChartOptions"
+    [options]="pieChartOptions"
     (chartHover)="chartHovered($event)"
     (chartClick)="chartClicked($event)"
   ></canvas>
-  <app-expense-pie-chart />
   } @else {
-  <div class="loading">Loading chart data...</div>
+  <div class="no-data">
+    <p>No expense data available</p>
+  </div>
   }
 </div>

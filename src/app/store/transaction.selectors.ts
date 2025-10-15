@@ -134,3 +134,29 @@ export const selectChartData = createSelector(
     };
   }
 );
+
+export const selectExpensesByCategory = createSelector(
+  selectFilteredTransactions,
+  (transactions) => {
+    const grouped: Record<string, number> = {};
+
+    transactions
+      .filter((t) => t.type === 'expense' && 'category' in t)
+      .forEach((transaction) => {
+        const category = (transaction as any).category || 'Uncategorized';
+        grouped[category] = (grouped[category] || 0) + transaction.amount;
+      });
+
+    return grouped;
+  }
+);
+
+export const selectPieChartData = createSelector(selectExpensesByCategory, (expensesByCategory) => {
+  const categories = Object.keys(expensesByCategory);
+  const amounts = Object.values(expensesByCategory);
+
+  return {
+    labels: categories,
+    data: amounts,
+  };
+});

@@ -3,20 +3,15 @@ import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectChartData } from '../../store/transaction.selectors';
-
-interface ChartDataPoint {
-  date: string;
-  income: number;
-  expense: number;
-}
+import { ExpensePieChart } from '../expense-pie-chart/expense-pie-chart';
 
 @Component({
   selector: 'app-charts',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule],
+  imports: [BaseChartDirective, CommonModule, ExpensePieChart],
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
 })
