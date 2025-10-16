@@ -1,17 +1,14 @@
 <div class="chart-container">
-  @let chartData = chartData$ | async; @if (chartData && chartData.labels && chartData.labels.length
-  > 0) {
+  @let chartData = chartData$ | async; @if (chartData) {
   <canvas
     baseChart
     [type]="chartType"
     [data]="chartData"
-    [options]="barChartOptions"
+    [options]="lineChartOptions"
     (chartHover)="chartHovered($event)"
     (chartClick)="chartClicked($event)"
   ></canvas>
   } @else {
-  <div class="no-data">
-    <p>No expense data available</p>
-  </div>
+  <div class="loading">Loading chart data...</div>
   }
 </div>

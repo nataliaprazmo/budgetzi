@@ -1,16 +1,5 @@
-<div class="chart-container" style="display: block; height: 400px">
-  @let chartData = chartData$ | async; @if (chartData) {
-  <canvas
-    baseChart
-    [type]="chartType"
-    [data]="chartData"
-    [options]="lineChartOptions"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"
-  ></canvas>
+<app-combined-line-chart />
+<div class="charts-row">
   <app-expense-pie-chart />
   <app-expense-category-bar-chart />
-  } @else {
-  <div class="loading">Loading chart data...</div>
-  }
 </div>
