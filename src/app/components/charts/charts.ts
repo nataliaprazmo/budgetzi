@@ -7,11 +7,12 @@ import { Observable, map } from 'rxjs';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectChartData } from '../../store/transaction.selectors';
 import { ExpensePieChart } from '../expense-pie-chart/expense-pie-chart';
+import { ExpenseCategoryBarChart } from '../expense-category-bar-chart/expense-category-bar-chart';
 
 @Component({
   selector: 'app-charts',
   standalone: true,
-  imports: [BaseChartDirective, CommonModule, ExpensePieChart],
+  imports: [BaseChartDirective, CommonModule, ExpensePieChart, ExpenseCategoryBarChart],
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
 })

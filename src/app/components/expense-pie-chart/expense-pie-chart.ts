@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectPieChartData } from '../../store/transaction.selectors';
+import { categoryColors } from '../../data/charts-colors';
 
 @Component({
   selector: 'app-expense-pie-chart',
@@ -44,19 +45,6 @@ export class ExpensePieChart {
 
   public chartType: ChartConfiguration['type'] = 'pie';
 
-  private categoryColors = [
-    '#ef4444',
-    '#f59e0b',
-    '#10b981',
-    '#3b82f6',
-    '#8b5cf6',
-    '#ec4899',
-    '#14b8a6',
-    '#f97316',
-    '#6366f1',
-    '#84cc16',
-  ];
-
   constructor(private store: Store<{ transaction: TransactionState }>) {
     this.chartData$ = this.store
       .select(selectPieChartData)
@@ -72,7 +60,7 @@ export class ExpensePieChart {
       datasets: [
         {
           data: data.data,
-          backgroundColor: this.categoryColors.slice(0, data.labels.length),
+          backgroundColor: categoryColors.slice(0, data.labels.length),
           borderColor: '#ffffff',
           borderWidth: 2,
           hoverOffset: 10,
