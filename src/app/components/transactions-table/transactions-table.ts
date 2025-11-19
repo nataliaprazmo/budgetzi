@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Transaction } from '../../types/transaction.types';
+import { deleteTransaction } from '../../store/transaction.actions';
+import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectAllTransactions } from '../../store/transaction.selectors';
@@ -26,6 +28,7 @@ import { TransactionsTableFilters } from '../transactions-table-filters/transact
     MatTooltipModule,
     MatCardModule,
     MatButtonModule,
+    RouterLink,
     TitleCasePipe,
     CurrencyPipe,
     DatePipe,
@@ -40,7 +43,15 @@ export class TransactionsTable implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource = new MatTableDataSource<Transaction>();
-  displayedColumns: string[] = ['type', 'title', 'description', 'category', 'amount', 'date'];
+  displayedColumns: string[] = [
+    'type',
+    'title',
+    'description',
+    'category',
+    'amount',
+    'date',
+    'actions',
+  ];
   selectedTypeFilter: 'all' | 'income' | 'expense' = 'all';
   selectedCategoryFilter: string = 'all';
   allTransactions: Transaction[] = [];
@@ -52,6 +63,19 @@ export class TransactionsTable implements AfterViewInit {
       this.updateAvailableCategories();
       this.applyFilters();
     });
+  }
+
+  onDelete(id: string) {
+    if (!id) return;
+    const confirmed = confirm('Delete this transaction?');
+    if (!confirmed) return;
+    this.store.dispatch(deleteTransaction({ id }));
+  }
+
+  onEdit(id: string) {
+    // navigate to edit route
+    // store dispatch not needed here; component will read route param
+    // using Router directly would require injecting it; prefer routerLink in template
   }
 
   ngAfterViewInit() {

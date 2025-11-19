@@ -8,6 +8,11 @@ export const selectAllTransactions = createSelector(
   (state) => state.transactions
 );
 
+export const selectTransactionById = (id: string) =>
+  createSelector(selectAllTransactions, (transactions) =>
+    transactions.find((t) => t.id === id)
+  );
+
 export const selectTransactionsLoaded = createSelector(
   selectAllTransactions,
   (transactions) => Array.isArray(transactions) && transactions.length > 0

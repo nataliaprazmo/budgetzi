@@ -5,4 +5,5 @@ import { AddTransaction } from './components/add-transaction/add-transaction';
 export const routes: Routes = [
   { path: '', component: Dashboard },
   { path: 'add', component: AddTransaction },
+  { path: 'edit/:id', component: AddTransaction },
 ];

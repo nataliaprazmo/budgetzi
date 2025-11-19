@@ -8,6 +8,8 @@ import { BaseButton } from '../base-button/base-button';
   styleUrl: './submit-button.scss',
 })
 export class SubmitButton {
+  @Input() label = 'Submit';
+  @Input() loadingLabel = 'Submitting...';
   @Input() isSubmitting = false;
   @Input() disabled = false;
   @Output() submit = new EventEmitter<void>();

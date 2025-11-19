@@ -1,7 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from '../../types/transaction.types';
-import { addTransaction } from '../../store/transaction.actions';
+import { addTransaction, updateTransaction } from '../../store/transaction.actions';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { selectTransactionById } from '../../store/transaction.selectors';
 import { selectExpenseCategories } from '../../store/transaction.selectors';
 import { MatIconModule } from '@angular/material/icon';
 import { TransactionTypeToggle } from '../transaction-type-toggle/transaction-type-toggle';
@@ -39,6 +41,9 @@ import { SubmitButton } from '../submit-button/submit-button';
 })
 export class AddTransaction {
   private formBuilder = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
   categories$: Observable<string[]>;
 
   showSuccessMessage = signal(false);
@@ -46,8 +51,36 @@ export class AddTransaction {
   errorMessage = signal('');
   isSubmitting = signal(false);
 
+  private editingId: string | null = null;
+  isEditMode = signal(false);
+
   constructor(private store: Store<{ transaction: TransactionState }>) {
     this.categories$ = this.store.select(selectExpenseCategories);
+
+    // detect edit route param and prefill form
+    this.route.paramMap.subscribe((pm) => {
+      const id = pm.get('id');
+      if (id) {
+        this.editingId = id;
+        this.isEditMode.set(true);
+        this.store
+          .select(selectTransactionById(id))
+          .pipe(take(1))
+          .subscribe((t) => {
+            if (t) {
+              this.type.set(t.type);
+              this.changeType(t.type);
+              this.form.patchValue({
+                title: t.title,
+                description: (t as any).description || '',
+                amount: (t as any).amount,
+                date: new Date((t as any).date),
+                category: (t as any).type === 'expense' ? (t as any).category : '',
+              });
+            }
+          });
+      }
+    });
   }
 
   type = signal<'income' | 'expense'>('income');
@@ -92,7 +125,7 @@ export class AddTransaction {
       const raw = this.form.getRawValue();
 
       const transaction: Transaction = {
-        id: crypto.randomUUID(),
+        id: this.editingId ?? crypto.randomUUID(),
         title: raw.title!,
         description: raw.description || '',
         amount: raw.amount!,
@@ -101,14 +134,26 @@ export class AddTransaction {
         ...(this.type() === 'expense' ? { category: raw.category! } : {}),
       } as Transaction;
 
-      this.store.dispatch(addTransaction({ transaction }));
-      this.resetForm();
-      this.showSuccess();
+      if (this.editingId) {
+        const { id, ...rest } = transaction as any;
+        const changes: Partial<Transaction> = { ...rest };
+        this.store.dispatch(updateTransaction({ id: this.editingId, changes }));
+        this.showSuccess();
+        setTimeout(() => this.router.navigate(['']), 500);
+      } else {
+        this.store.dispatch(addTransaction({ transaction }));
+        this.resetForm();
+        this.showSuccess();
+      }
     } catch (error) {
       this.showError('An error occurred while adding the transaction. Please try again.');
     } finally {
       this.isSubmitting.set(false);
     }
+  }
+
+  onCancel() {
+    this.router.navigate(['']);
   }
 
   private showSuccess() {
