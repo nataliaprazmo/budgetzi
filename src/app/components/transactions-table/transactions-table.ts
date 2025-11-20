@@ -72,12 +72,6 @@ export class TransactionsTable implements AfterViewInit {
     this.store.dispatch(deleteTransaction({ id }));
   }
 
-  onEdit(id: string) {
-    // navigate to edit route
-    // store dispatch not needed here; component will read route param
-    // using Router directly would require injecting it; prefer routerLink in template
-  }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -103,6 +97,7 @@ export class TransactionsTable implements AfterViewInit {
     }
 
     this.dataSource.data = filtered;
+    this.dataSource.sort = this.sort;
   }
 
   setTypeFilter(type: 'all' | 'income' | 'expense') {

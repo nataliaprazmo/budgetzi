@@ -9,6 +9,19 @@
   <br />
   <app-charts />
   } @else {
-  <div class="no-transactions">No transactions</div>
+  <div class="empty-state">
+    <mat-icon class="empty-state-icon">inbox</mat-icon>
+    <h2 class="empty-state-title">No Transactions Yet</h2>
+    <p class="empty-state-message">
+      Start tracking your expenses and income to see your financial overview.
+    </p>
+    <app-base-button
+      label="Add your first transaction"
+      variant="elevated"
+      color="primary"
+      (action)="onAddFirstTransaction()"
+      class="empty-state-button"
+    ></app-base-button>
+  </div>
   }
 </div>

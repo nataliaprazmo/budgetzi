@@ -64,9 +64,7 @@
       [isSubmitting]="isSubmitting()"
       [disabled]="form.invalid"
     />
-    @if (isEditMode()) {
     <button mat-button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
-    }
 
     <app-message-display
       [showSuccessMessage]="showSuccessMessage()"
