@@ -2,12 +2,6 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
 import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Transaction } from '../../types/transaction.types';
 import { deleteTransaction } from '../../store/transaction.actions';
@@ -16,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectAllTransactions } from '../../store/transaction.selectors';
 import { TransactionsTableFilters } from '../transactions-table-filters/transactions-table-filters';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-transactions-table',
@@ -23,16 +18,11 @@ import { TransactionsTableFilters } from '../transactions-table-filters/transact
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatBadgeModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatButtonModule,
+    MaterialModule,
     RouterLink,
     TitleCasePipe,
     CurrencyPipe,
     DatePipe,
-    MatChipsModule,
     TransactionsTableFilters,
   ],
   templateUrl: './transactions-table.html',

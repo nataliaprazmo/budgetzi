@@ -4,6 +4,23 @@
 mat-card {
   margin: 1rem;
   padding: 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+mat-card-title {
+  transition: color 0.3s ease;
+}
+
+:host-context(.dark-theme) mat-card {
+  background-color: #252d3d;
+}
+
+:host-context(.dark-theme) mat-card-title {
+  color: #e0e0e0;
+}
+
+:host-context(.dark-theme) mat-card {
+  background-color: #252d3d;
 }
 
 table {
@@ -11,17 +28,37 @@ table {
   border-collapse: collapse;
 }
 
-.amount {
-  color: colors.$balance;
-  font-weight: bold;
-}
-
 th.mat-header-cell {
   text-align: left;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+:host-context(.dark-theme) th.mat-header-cell {
+  color: #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 td.mat-cell {
   vertical-align: middle;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+:host-context(.dark-theme) td.mat-cell {
+  color: #b0b8c7;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.amount {
+  font-weight: bold;
+  transition: color 0.2s ease;
+
+  &.amount-income {
+    color: colors.$income;
+  }
+
+  &.amount-expense {
+    color: colors.$expense;
+  }
 }
 
 mat-chip {

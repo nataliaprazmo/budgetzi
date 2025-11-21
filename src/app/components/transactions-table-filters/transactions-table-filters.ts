@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-transactions-table-filters',
-  imports: [MatChipsModule, MatSelectModule, MatFormFieldModule, FormsModule],
+  imports: [MaterialModule, FormsModule],
   templateUrl: './transactions-table-filters.html',
   styleUrl: './transactions-table-filters.scss',
 })
