@@ -1,22 +1,21 @@
 import { Component, OnInit, ViewChild, effect } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { TransactionState } from '../../types/transaction-states.types';
-import { selectExpensesByCategory } from '../../store/transaction.selectors';
-import { categoryColors } from '../../data/charts-colors';
+import { selectChartData } from '../../store/transaction.selectors';
 import { ChartColorsService } from '../../services/chart-colors.service';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-expense-category-bar-chart',
+  selector: 'app-income-vs-expense-chart',
   standalone: true,
   imports: [BaseChartDirective, AsyncPipe],
-  templateUrl: './expense-category-bar-chart.html',
-  styleUrl: './expense-category-bar-chart.scss',
+  templateUrl: './income-vs-expense-chart.html',
+  styleUrl: './income-vs-expense-chart.scss',
 })
-export class ExpenseCategoryBarChart implements OnInit {
+export class IncomeVsExpenseChart implements OnInit {
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   public chartData$: Observable<ChartConfiguration['data']>;
@@ -28,12 +27,12 @@ export class ExpenseCategoryBarChart implements OnInit {
     private chartColorsService: ChartColorsService
   ) {
     this.chartData$ = this.store
-      .select(selectExpensesByCategory)
+      .select(selectChartData)
       .pipe(map((data) => this.transformToChartData(data)));
-
     effect(() => {
       this.chartColorsService.axisColor();
       this.chartColorsService.gridColor();
+      this.chartColorsService.legendColor();
 
       this.updateChartOptions();
       this.chart?.update();
@@ -46,12 +45,15 @@ export class ExpenseCategoryBarChart implements OnInit {
 
   private updateChartOptions(): void {
     this.barChartOptions = {
-      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: false,
+          display: true,
+          position: 'top',
+          labels: {
+            color: this.chartColorsService.legendColor(),
+          },
         },
         tooltip: {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -59,13 +61,13 @@ export class ExpenseCategoryBarChart implements OnInit {
           bodyColor: '#ffffff',
           callbacks: {
             label: function (context) {
-              return '$' + context.parsed.x.toLocaleString();
+              return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
             },
           },
         },
       },
       scales: {
-        x: {
+        y: {
           beginAtZero: true,
           ticks: {
             color: this.chartColorsService.axisColor(),
@@ -77,7 +79,7 @@ export class ExpenseCategoryBarChart implements OnInit {
             color: this.chartColorsService.gridColor(),
           },
         },
-        y: {
+        x: {
           ticks: {
             color: this.chartColorsService.axisColor(),
           },
@@ -89,24 +91,26 @@ export class ExpenseCategoryBarChart implements OnInit {
     };
   }
 
-  private transformToChartData(
-    expensesByCategory: Record<string, number>
-  ): ChartConfiguration['data'] {
-    const categories = Object.keys(expensesByCategory);
-    const amounts = Object.values(expensesByCategory);
-
-    const sorted = categories
-      .map((category, index) => ({ category, amount: amounts[index] }))
-      .sort((a, b) => b.amount - a.amount);
-
+  private transformToChartData(data: {
+    labels: string[];
+    expenseData: number[];
+    incomeData: number[];
+  }): ChartConfiguration['data'] {
     return {
-      labels: sorted.map((item) => item.category),
+      labels: data.labels,
       datasets: [
         {
-          label: 'Spending',
-          data: sorted.map((item) => item.amount),
-          backgroundColor: categoryColors.slice(0, sorted.length),
-          borderColor: categoryColors.slice(0, sorted.length),
+          label: 'Income',
+          data: data.incomeData,
+          backgroundColor: '#10b981',
+          borderColor: '#10b981',
+          borderWidth: 0,
+        },
+        {
+          label: 'Expenses',
+          data: data.expenseData,
+          backgroundColor: '#ef4444',
+          borderColor: '#ef4444',
           borderWidth: 0,
         },
       ],
