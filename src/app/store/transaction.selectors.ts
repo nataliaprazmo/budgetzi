@@ -165,3 +165,12 @@ export const selectPieChartData = createSelector(selectExpensesByCategory, (expe
     data: amounts,
   };
 });
+
+export const selectMonthlySavingsRate = createSelector(
+  selectFilteredTotalIncome,
+  selectFilteredTotalExpenses,
+  (income, expenses) => {
+    if (income === 0) return 0;
+    return ((income - expenses) / income) * 100;
+  }
+);

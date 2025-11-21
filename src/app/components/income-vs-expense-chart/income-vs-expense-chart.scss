@@ -1,0 +1,17 @@
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-size: 0.9rem;
+
+  p {
+    margin: 0;
+  }
+}
