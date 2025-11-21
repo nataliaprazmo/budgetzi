@@ -5,6 +5,9 @@
 }
 
 .app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -40,7 +43,6 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
     white-space: nowrap;
     transition: background-color 0.3s ease;
@@ -120,6 +122,7 @@ mat-sidenav {
 :host-context(.dark-theme) {
   .app-toolbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #1a1f2e;
   }
 
   mat-sidenav {

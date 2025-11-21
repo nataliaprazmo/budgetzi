@@ -11,18 +11,6 @@ mat-card-title {
   transition: color 0.3s ease;
 }
 
-:host-context(.dark-theme) mat-card {
-  background-color: #252d3d;
-}
-
-:host-context(.dark-theme) mat-card-title {
-  color: #e0e0e0;
-}
-
-:host-context(.dark-theme) mat-card {
-  background-color: #252d3d;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -33,19 +21,9 @@ th.mat-header-cell {
   transition: color 0.3s ease, background 0.3s ease;
 }
 
-:host-context(.dark-theme) th.mat-header-cell {
-  color: #e0e0e0;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
 td.mat-cell {
   vertical-align: middle;
   transition: color 0.3s ease, background 0.3s ease;
-}
-
-:host-context(.dark-theme) td.mat-cell {
-  color: #b0b8c7;
-  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .amount {
@@ -85,4 +63,28 @@ mat-chip.expense {
       outline-color: colors.$expense,
     )
   );
+}
+
+:host-context(.dark-theme) {
+  table,
+  mat-paginator {
+    background-color: #252d3d;
+  }
+  mat-card {
+    background-color: #252d3d;
+  }
+  mat-card-title {
+    color: #e0e0e0;
+  }
+  mat-card {
+    background-color: #252d3d;
+  }
+  td.mat-cell {
+    color: #b0b8c7;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  th.mat-header-cell {
+    color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }

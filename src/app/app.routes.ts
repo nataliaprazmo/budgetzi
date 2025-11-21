@@ -7,5 +7,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/dashboard/dashboard').then((m) => m.Dashboard),
   },
   { path: 'add', component: AddTransaction },
+  {
+    path: 'data-management',
+    loadComponent: () =>
+      import('./components/data-management/data-management').then((m) => m.DataManagement),
+  },
   { path: 'edit/:id', component: AddTransaction },
 ];

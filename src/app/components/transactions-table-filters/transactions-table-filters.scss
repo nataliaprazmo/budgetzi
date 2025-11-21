@@ -11,6 +11,10 @@
     font-size: 14px;
   }
 
+  :host-context(.dark-theme) .filter-label {
+    color: #ffffff;
+  }
+
   mat-chip-listbox {
     display: flex;
     align-items: center;

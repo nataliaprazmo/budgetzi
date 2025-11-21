@@ -1,41 +1,5 @@
 <div class="dashboard-container">
-  @if (isLoaded$ | async) {
-  <section class="dashboard-section quick-stats-section">
-    <h2 class="section-title">Financial Overview</h2>
-    <app-kpis />
-  </section>
-
-  @defer (on viewport) {
-  <section class="dashboard-section charts-section">
-    <h2 class="section-title">Charts & Insights</h2>
-    <app-charts />
-  </section>
-  } @placeholder {
-  <section class="dashboard-section charts-section">
-    <h2 class="section-title">Charts & Insights</h2>
-    <div class="skeleton-charts-container">
-      <div class="skeleton-chart"></div>
-      <div class="skeleton-chart"></div>
-    </div>
-  </section>
-  } @defer (on viewport) {
-  <section class="dashboard-section transactions-section">
-    <h2 class="section-title">Transactions</h2>
-    <div class="transactions-controls">
-      <app-data-management />
-    </div>
-    <app-transactions-table />
-  </section>
-  } @placeholder {
-  <section class="dashboard-section transactions-section">
-    <h2 class="section-title">Transactions</h2>
-    <div class="skeleton-table-container">
-      <div class="skeleton-table-row"></div>
-      <div class="skeleton-table-row"></div>
-      <div class="skeleton-table-row"></div>
-    </div>
-  </section>
-  } } @else {
+  @if (isLoaded$ | async) { @if(loading$ | async) {
   <section class="dashboard-section quick-stats-section">
     <h2 class="section-title">Financial Overview</h2>
     <div class="skeleton-kpis-container">
@@ -61,6 +25,61 @@
       <div class="skeleton-table-row"></div>
       <div class="skeleton-table-row"></div>
     </div>
+  </section>
+  } @else {
+  <section class="dashboard-section quick-stats-section">
+    <h2 class="section-title">Financial Overview</h2>
+    <app-kpis />
+  </section>
+
+  @defer (on viewport) {
+  <section class="dashboard-section charts-section">
+    <h2 class="section-title">Charts & Insights</h2>
+    <app-charts />
+  </section>
+  } @placeholder {
+  <section class="dashboard-section charts-section">
+    <h2 class="section-title">Charts & Insights</h2>
+    <div class="skeleton-charts-container">
+      <div class="skeleton-chart"></div>
+      <div class="skeleton-chart"></div>
+    </div>
+  </section>
+  } @defer (on viewport) {
+  <section class="dashboard-section transactions-section">
+    <h2 class="section-title">Transactions</h2>
+    <app-transactions-table />
+  </section>
+  } @placeholder {
+  <section class="dashboard-section transactions-section">
+    <h2 class="section-title">Transactions</h2>
+    <div class="skeleton-table-container">
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+    </div>
+  </section>
+  }} } @else {
+  <section class="dashboard-section empty-state-section">
+    <mat-card class="empty-card">
+      <mat-card-content class="empty-card-content">
+        <div class="empty-icon">
+          <mat-icon color="primary" style="font-size: 48px">receipt_long</mat-icon>
+        </div>
+        <h3>No transactions yet</h3>
+        <p>Add your first transaction or import sample data to get started.</p>
+        <div class="empty-actions">
+          <button mat-raised-button color="primary" routerLink="/add">
+            <mat-icon>add_circle</mat-icon>
+            Add Your First Transaction
+          </button>
+          <button mat-raised-button color="accent" routerLink="/data-management">
+            <mat-icon>storage</mat-icon>
+            Go to Data Management
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </section>
   }
 </div>

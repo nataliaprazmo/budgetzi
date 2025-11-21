@@ -24,7 +24,6 @@
 :host-context(.dark-theme) .section-title {
   color: #e0e0e0;
   border-bottom-color: rgba(255, 255, 255, 0.12);
-  background-color: #1e2535;
 }
 
 .quick-stats-section {
@@ -40,7 +39,7 @@
 }
 
 :host-context(.dark-theme) .quick-stats-section {
-  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+  background: linear-gradient(135deg, #13191f 0%, #1a1f2e 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
