@@ -1,27 +1,66 @@
 <div class="dashboard-container">
-  <app-data-management />
   @if (isLoaded$ | async) {
-  <div class="top-row">
+  <section class="dashboard-section quick-stats-section">
+    <h2 class="section-title">Financial Overview</h2>
     <app-kpis />
-    <app-filters />
-  </div>
-  <app-transactions-table />
-  <br />
-  <app-charts />
-  } @else {
-  <div class="empty-state">
-    <mat-icon class="empty-state-icon">inbox</mat-icon>
-    <h2 class="empty-state-title">No Transactions Yet</h2>
-    <p class="empty-state-message">
-      Start tracking your expenses and income to see your financial overview.
-    </p>
-    <app-base-button
-      label="Add your first transaction"
-      variant="elevated"
-      color="primary"
-      (action)="onAddFirstTransaction()"
-      class="empty-state-button"
-    ></app-base-button>
-  </div>
+  </section>
+
+  @defer (on viewport) {
+  <section class="dashboard-section charts-section">
+    <h2 class="section-title">Charts & Insights</h2>
+    <app-charts />
+  </section>
+  } @placeholder {
+  <section class="dashboard-section charts-section">
+    <h2 class="section-title">Charts & Insights</h2>
+    <div class="skeleton-charts-container">
+      <div class="skeleton-chart"></div>
+      <div class="skeleton-chart"></div>
+    </div>
+  </section>
+  } @defer (on viewport) {
+  <section class="dashboard-section transactions-section">
+    <h2 class="section-title">Transactions</h2>
+    <div class="transactions-controls">
+      <app-data-management />
+    </div>
+    <app-transactions-table />
+  </section>
+  } @placeholder {
+  <section class="dashboard-section transactions-section">
+    <h2 class="section-title">Transactions</h2>
+    <div class="skeleton-table-container">
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+    </div>
+  </section>
+  } } @else {
+  <section class="dashboard-section quick-stats-section">
+    <h2 class="section-title">Financial Overview</h2>
+    <div class="skeleton-kpis-container">
+      <app-skeleton-kpi-card />
+      <app-skeleton-kpi-card />
+      <app-skeleton-kpi-card />
+      <app-skeleton-kpi-card />
+    </div>
+  </section>
+
+  <section class="dashboard-section charts-section">
+    <h2 class="section-title">Charts & Insights</h2>
+    <div class="skeleton-charts-container">
+      <div class="skeleton-chart"></div>
+      <div class="skeleton-chart"></div>
+    </div>
+  </section>
+
+  <section class="dashboard-section transactions-section">
+    <h2 class="section-title">Transactions</h2>
+    <div class="skeleton-table-container">
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+      <div class="skeleton-table-row"></div>
+    </div>
+  </section>
   }
 </div>

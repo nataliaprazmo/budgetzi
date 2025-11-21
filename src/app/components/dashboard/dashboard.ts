@@ -6,24 +6,22 @@ import { Store } from '@ngrx/store';
 import { selectTransactionsLoaded } from '../../store/transaction.selectors';
 import { TransactionState } from '../../types/transaction-states.types';
 import { AsyncPipe } from '@angular/common';
-import { Filters } from '../filters/filters';
 import { TransactionsTable } from '../transactions-table/transactions-table';
 import { Charts } from '../charts/charts';
-import { MatIconModule } from '@angular/material/icon';
-import { BaseButton } from '../base-button/base-button';
 import { Router } from '@angular/router';
+import { SkeletonKpiCard } from '../skeleton-kpi-card/skeleton-kpi-card';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     DataManagement,
-    Filters,
     Kpis,
     AsyncPipe,
     TransactionsTable,
     Charts,
-    MatIconModule,
-    BaseButton,
+    MaterialModule,
+    SkeletonKpiCard,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
@@ -33,9 +31,5 @@ export class Dashboard {
 
   constructor(private store: Store<{ transaction: TransactionState }>, private router: Router) {
     this.isLoaded$ = this.store.select(selectTransactionsLoaded);
-  }
-
-  onAddFirstTransaction() {
-    this.router.navigate(['/add']);
   }
 }
