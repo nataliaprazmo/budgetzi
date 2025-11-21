@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-message-display',
-  imports: [MatIconModule],
+  imports: [MaterialModule],
   templateUrl: './message-display.html',
   styleUrl: './message-display.scss',
 })

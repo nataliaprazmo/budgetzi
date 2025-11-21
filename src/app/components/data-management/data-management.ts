@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Transaction } from '../../types/transaction.types';
@@ -14,10 +13,11 @@ import { selectAllTransactions, selectTransactionLoading } from '../../store/tra
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AsyncPipe } from '@angular/common';
 import { ActionButtons } from '../action-buttons/action-buttons';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-data-management',
-  imports: [MatCardModule, AsyncPipe, MatSnackBarModule, ActionButtons],
+  imports: [MaterialModule, AsyncPipe, MatSnackBarModule, ActionButtons],
   templateUrl: './data-management.html',
   styleUrl: './data-management.scss',
 })

@@ -5,34 +5,26 @@ import { Transaction } from '../../types/transaction.types';
 import { addTransaction, updateTransaction } from '../../store/transaction.actions';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
 import { Observable, take } from 'rxjs';
 import { selectTransactionById } from '../../store/transaction.selectors';
 import { selectExpenseCategories } from '../../store/transaction.selectors';
-import { MatIconModule } from '@angular/material/icon';
 import { TransactionTypeToggle } from '../transaction-type-toggle/transaction-type-toggle';
 import { MessageDisplay } from '../message-display/message-display';
 import { SubmitButton } from '../submit-button/submit-button';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-add-transaction',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
+    MaterialModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    TransactionTypeToggle,
     MatAutocompleteModule,
     AsyncPipe,
-    MatIconModule,
+    TransactionTypeToggle,
     MessageDisplay,
     SubmitButton,
   ],
@@ -57,7 +49,6 @@ export class AddTransaction {
   constructor(private store: Store<{ transaction: TransactionState }>) {
     this.categories$ = this.store.select(selectExpenseCategories);
 
-    // detect edit route param and prefill form
     this.route.paramMap.subscribe((pm) => {
       const id = pm.get('id');
       if (id) {

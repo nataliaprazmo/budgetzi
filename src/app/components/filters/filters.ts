@@ -1,33 +1,27 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
 import {
   MatDatepickerModule,
   MatDateRangeInput,
   MatDateRangePicker,
 } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectExpenseCategories } from '../../store/transaction.selectors';
 import { setTransactionFilters } from '../../store/transaction.actions';
+import { MaterialModule } from '../../shared/material.module';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-filters',
   imports: [
-    CommonModule,
+    AsyncPipe,
     FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
+    MaterialModule,
     MatDatepickerModule,
     MatDateRangeInput,
     MatDateRangePicker,
-    MatNativeDateModule,
   ],
   templateUrl: './filters.html',
   styleUrl: './filters.scss',
