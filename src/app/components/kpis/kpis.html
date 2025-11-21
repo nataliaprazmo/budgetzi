@@ -7,4 +7,13 @@
 
   @let totalBalance = (totalBalance$ | async) ?? 0;
   <app-kpi-card label="Total Balance" [value]="totalBalance" color="#0051ff" />
+
+  @let monthlySavingsRate = (monthlySavingsRate$ | async) ?? 0;
+  <app-kpi-card
+    label="Savings Rate"
+    [value]="monthlySavingsRate"
+    color="#6366f1"
+    format="percent"
+    [trendLabel]="'of income'"
+  />
 </div>
