@@ -12,7 +12,7 @@
   align-items: center;
   gap: 1rem;
   padding: 0 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
   transition: box-shadow 0.3s ease;
 
   .menu-button {
@@ -24,6 +24,12 @@
     font-size: 1.5rem;
     white-space: nowrap;
     letter-spacing: -0.5px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .app-title:hover {
+    color: colors.$balance;
   }
 
   .spacer {
@@ -80,7 +86,7 @@ mat-sidenav {
       position: relative;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+        background-color: var(--shadow-color-sm);
         transform: translateX(2px);
       }
 
@@ -90,26 +96,26 @@ mat-sidenav {
       }
 
       &.active {
-        background-color: rgba(63, 81, 181, 0.12);
+        background-color: var(--primary-overlay);
         font-weight: 600;
 
         mat-icon {
-          color: colors.$primary;
+          color: colors.$balance;
         }
       }
 
       mat-icon {
         transition: color 0.2s ease;
-        color: rgba(0, 0, 0, 0.54);
+        color: var(--text-secondary);
       }
 
       [matListItemTitle] {
         transition: color 0.2s ease;
-        color: rgba(0, 0, 0, 0.87);
+        color: var(--text-primary);
       }
 
       &.active [matListItemTitle] {
-        color: colors.$primary;
+        color: colors.$balance;
       }
     }
   }
@@ -121,31 +127,31 @@ mat-sidenav {
 
 :host-context(.dark-theme) {
   .app-toolbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    background-color: #1a1f2e;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--bg-secondary);
   }
 
   mat-sidenav {
     mat-nav-list {
       mat-list-item {
         &:hover {
-          background-color: rgba(255, 255, 255, 0.08);
+          background-color: var(--bg-secondary);
         }
 
         &.active {
-          background-color: rgba(63, 81, 181, 0.2);
+          background-color: var(--bg-tertiary);
         }
 
         mat-icon {
-          color: rgba(255, 255, 255, 0.54);
+          color: var(--text-tertiary);
         }
 
         [matListItemTitle] {
-          color: rgba(255, 255, 255, 0.87);
+          color: var(--text-primary);
         }
 
         &.active [matListItemTitle] {
-          color: #90caf9;
+          color: var(--text-accent);
         }
       }
     }

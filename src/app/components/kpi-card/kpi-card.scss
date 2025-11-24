@@ -1,24 +1,26 @@
+@use '../../../colors' as colors;
+
 .kpi-card {
   flex: 1;
   min-width: 200px;
   min-height: 200px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px var(--border-color-light);
   transition: box-shadow 0.3s ease, transform 0.2s ease, background 0.3s ease;
-  background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+  background: var(--gradient-card);
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px var(--shadow-color);
     transform: translateY(-2px);
   }
 }
 
 :host-context(.dark-theme) .kpi-card {
-  background: linear-gradient(135deg, #2a3444 0%, #1f2836 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: var(--gradient-card);
+  box-shadow: 0 2px 8px var(--shadow-color);
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px var(--shadow-color-lg);
   }
 }
 
@@ -45,13 +47,13 @@
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: #666;
+  color: var(--text-secondary);
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
 :host-context(.dark-theme) .kpi-label {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .kpi-value {
@@ -62,13 +64,13 @@
 
 .kpi-sublabel {
   font-size: 0.75rem;
-  color: #999;
+  color: var(--text-tertiary);
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 :host-context(.dark-theme) .kpi-sublabel {
-  color: #b0b8c7;
+  color: var(--text-tertiary);
 }
 
 .kpi-trend {
@@ -79,12 +81,12 @@
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 600;
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary);
   transition: background-color 0.3s ease;
 
   &.positive {
-    color: #1dcd9f;
-    background-color: rgba(29, 205, 159, 0.1);
+    color: colors.$success;
+    background-color: rgba(colors.$success, 0.1);
 
     .trend-icon {
       font-size: 1rem;
@@ -94,9 +96,8 @@
   }
 
   &.negative {
-    color: #f7374f;
-    background-color: rgba(247, 55, 79, 0.1);
-
+    color: colors.$error;
+    background-color: rgba(colors.$error, 0.1);
     .trend-icon {
       font-size: 1rem;
       width: 1rem;

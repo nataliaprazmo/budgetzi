@@ -14,23 +14,22 @@
 .section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
   margin: 0;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid var(--bg-tertiary);
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 :host-context(.dark-theme) .section-title {
-  color: #e0e0e0;
-  border-bottom-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  border-bottom-color: var(--border-color);
 }
 
 .quick-stats-section {
-  background: linear-gradient(135deg, rgba(63, 81, 181, 0.05) 0%, rgba(0, 0, 0, 0.02) 100%);
+  background: var(--gradient-section);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px var(--shadow-color-lg);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 
   app-kpis {
@@ -39,15 +38,15 @@
 }
 
 :host-context(.dark-theme) .quick-stats-section {
-  background: linear-gradient(135deg, #13191f 0%, #1a1f2e 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: var(--gradient-section);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .charts-section {
-  background: #fff;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px var(--shadow-color-lg);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 
   app-charts {
@@ -56,15 +55,15 @@
 }
 
 :host-context(.dark-theme) .charts-section {
-  background: #1e2535;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: var(--gradient-card);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .transactions-section {
-  background: #fff;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px var(--shadow-color-lg);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 
   .transactions-controls {
@@ -85,8 +84,8 @@
 }
 
 :host-context(.dark-theme) .transactions-section {
-  background: #1e2535;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: var(--gradient-section);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .empty-state {
@@ -103,19 +102,19 @@
     font-size: 80px;
     width: 80px;
     height: 80px;
-    color: #bbb;
+    color: var(--text-tertiary);
   }
 
   .empty-state-title {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary);
     margin: 0;
   }
 
   .empty-state-message {
     font-size: 1rem;
-    color: #777;
+    color: var(--text-secondary);
     margin: 0;
     max-width: 400px;
     line-height: 1.5;
@@ -228,16 +227,16 @@
   border-radius: 8px;
   background: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.05) 25%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.05) 75%
+    var(--shadow-color-sm) 25%,
+    var(--shadow-color) 50%,
+    var(--shadow-color-sm) 75%
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--shadow-color-sm);
   }
 }
 
@@ -252,16 +251,16 @@
   border-radius: 4px;
   background: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.05) 25%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.05) 75%
+    var(--shadow-color-sm) 25%,
+    var(--shadow-color) 50%,
+    var(--shadow-color-sm) 75%
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--shadow-color-sm);
   }
 }
 
@@ -279,9 +278,9 @@
   .skeleton-table-row {
     background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.05) 25%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 75%
+      var(--border-color-light) 25%,
+      var(--border-color) 50%,
+      var(--border-color-light) 75%
     );
     background-size: 200% 100%;
   }

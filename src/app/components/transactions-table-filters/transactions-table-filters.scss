@@ -7,12 +7,12 @@
 
   .filter-label {
     font-weight: 500;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--text-secondary);
     font-size: 14px;
   }
 
   :host-context(.dark-theme) .filter-label {
-    color: #ffffff;
+    color: var(--text-secondary);
   }
 
   mat-chip-listbox {

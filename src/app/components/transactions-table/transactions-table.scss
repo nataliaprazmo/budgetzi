@@ -68,23 +68,23 @@ mat-chip.expense {
 :host-context(.dark-theme) {
   table,
   mat-paginator {
-    background-color: #252d3d;
+    background-color: var(--bg-tertiary);
   }
   mat-card {
-    background-color: #252d3d;
+    background-color: var(--bg-tertiary);
   }
   mat-card-title {
-    color: #e0e0e0;
+    color: var(--text-secondary);
   }
   mat-card {
-    background-color: #252d3d;
+    background-color: var(--bg-tertiary);
   }
   td.mat-cell {
-    color: #b0b8c7;
-    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-tertiary);
+    border-color: var(--border-color);
   }
   th.mat-header-cell {
-    color: #e0e0e0;
-    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    background-color: var(--border-color-light);
   }
 }

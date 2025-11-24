@@ -11,7 +11,7 @@ import { MaterialModule } from '../../shared/material.module';
 export class KpiCard {
   @Input() label!: string;
   @Input() value: number = 0;
-  @Input() color: string = '#3f51b5';
+  @Input() color: string = '#0051ff';  // Default to primary balance color
   @Input() trend?: number;
   @Input() trendLabel?: string;
   @Input() format: 'currency' | 'percent' = 'currency';

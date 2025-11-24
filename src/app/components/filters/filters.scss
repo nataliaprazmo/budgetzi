@@ -1,7 +1,7 @@
 @use '../../../colors' as colors;
 
 .filters-panel {
-  border: 1px solid #e0dede;
+  border: 1px solid var(--text-secondary);
   border-radius: 8px;
   padding: 1rem;
   display: flex;

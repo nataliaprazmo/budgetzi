@@ -1,9 +1,9 @@
 .skeleton-loader {
   background: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.05) 25%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.05) 75%
+    var(--shadow-color-sm) 25%,
+    var(--shadow-color) 50%,
+    var(--shadow-color-sm) 75%
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
@@ -11,7 +11,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--shadow-color-sm);
   }
 }
 
@@ -27,9 +27,9 @@
 :host-context(.dark-theme) .skeleton-loader {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
+    var(--border-color-light) 25%,
+    var(--border-color) 50%,
+    var(--border-color-light) 75%
   );
   background-size: 200% 100%;
 }

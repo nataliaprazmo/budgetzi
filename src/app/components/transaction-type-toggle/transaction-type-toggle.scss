@@ -14,3 +14,15 @@
     }
   }
 }
+
+:host-context(.dark-theme) {
+  .type-toggle ::ng-deep .mat-button-toggle {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+
+    &.mat-button-toggle-checked {
+      background-color: var(--bg-accent);
+      color: var(--text-primary);
+    }
+  }
+}
