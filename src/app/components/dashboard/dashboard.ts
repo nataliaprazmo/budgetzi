@@ -13,6 +13,7 @@ import { Charts } from '../charts/charts';
 import { SkeletonKpiCard } from '../skeleton-kpi-card/skeleton-kpi-card';
 import { MaterialModule } from '../../shared/material.module';
 import { RouterModule } from '@angular/router';
+import { Filters } from '../filters/filters';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     SkeletonKpiCard,
     RouterModule,
+    Filters,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',

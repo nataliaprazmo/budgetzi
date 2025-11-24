@@ -1,5 +1,9 @@
 <div class="dashboard-container">
-  @if (isLoaded$ | async) { @if(loading$ | async) {
+  @if (isLoaded$ | async) {
+  <section class="dashboard-section filters-section">
+    <app-filters />
+  </section>
+  @if(loading$ | async) {
   <section class="dashboard-section quick-stats-section">
     <h2 class="section-title">Financial Overview</h2>
     <div class="skeleton-kpis-container">

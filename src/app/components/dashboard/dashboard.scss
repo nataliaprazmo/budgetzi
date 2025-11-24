@@ -11,6 +11,12 @@
   gap: 1.5rem;
 }
 
+.filters-section {
+  app-filters {
+    display: block;
+  }
+}
+
 .section-title {
   font-size: 1.5rem;
   font-weight: 600;

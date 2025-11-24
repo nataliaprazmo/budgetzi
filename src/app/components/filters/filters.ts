@@ -31,11 +31,15 @@ export class Filters {
   category: string | 'all' | null = 'all';
   fromDate: Date | null = null;
   toDate: Date | null = null;
-
   categories$: Observable<string[]>;
+  isExpanded = false;
 
   constructor(private store: Store<{ transaction: TransactionState }>) {
     this.categories$ = this.store.select(selectExpenseCategories);
+  }
+
+  toggleDrawer() {
+    this.isExpanded = !this.isExpanded;
   }
 
   applyFilters() {
@@ -45,7 +49,6 @@ export class Filters {
       fromDate: this.fromDate ?? undefined,
       toDate: this.toDate ?? undefined,
     };
-
     this.store.dispatch(setTransactionFilters({ filters }));
   }
 }
