@@ -1,0 +1,12 @@
+<app-base-button
+  label="{{ label }}"
+  loadingLabel="{{ loadingLabel }}"
+  color="primary"
+  variant="filled"
+  buttonType="submit"
+  [disabled]="disabled"
+  [isLoading]="isSubmitting"
+  (action)="onSubmit()"
+  class="submit-btn"
+>
+</app-base-button>

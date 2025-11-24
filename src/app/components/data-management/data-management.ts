@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Transaction } from '../../types/transaction.types';
@@ -14,10 +14,12 @@ import { selectAllTransactions, selectTransactionLoading } from '../../store/tra
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AsyncPipe } from '@angular/common';
 import { ActionButtons } from '../action-buttons/action-buttons';
+import { MaterialModule } from '../../shared/material.module';
+import { BaseButton } from '../base-button/base-button';
 
 @Component({
   selector: 'app-data-management',
-  imports: [MatCardModule, AsyncPipe, MatSnackBarModule, ActionButtons],
+  imports: [MaterialModule, AsyncPipe, MatSnackBarModule, ActionButtons, BaseButton],
   templateUrl: './data-management.html',
   styleUrl: './data-management.scss',
 })
@@ -27,11 +29,11 @@ export class DataManagement {
 
   constructor(
     private store: Store<{ transaction: TransactionState }>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.transactions$ = store.select(selectAllTransactions);
     this.loading$ = store.select(selectTransactionLoading);
-
     this.store
       .select((state) => state.transaction)
       .subscribe((state) => {
@@ -41,6 +43,10 @@ export class DataManagement {
           this.showSuccessMessage('Transactions loaded successfully');
         }
       });
+  }
+
+  goToDashboard() {
+    this.router.navigate(['/']);
   }
 
   importSample() {

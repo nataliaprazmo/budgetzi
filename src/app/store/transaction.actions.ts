@@ -65,3 +65,8 @@ export const exportTransactionsFailure = createAction(
 );
 
 export const clearAllTransactions = createAction('[Transaction] Clear All Transactions');
+
+export const updateTransaction = createAction(
+  '[Transaction] Update Transaction',
+  props<{ id: string; changes: Partial<Transaction> }>()
+);

@@ -68,6 +68,7 @@ export class TransactionEffects {
       this.actions$.pipe(
         ofType(
           TransactionActions.addTransaction,
+          TransactionActions.updateTransaction,
           TransactionActions.deleteTransaction,
           TransactionActions.importTransactionsFromCsvSuccess,
           TransactionActions.loadTransactionsFromLocalStorageSuccess

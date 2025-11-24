@@ -1,0 +1,43 @@
+@use '../../../colors' as colors;
+@use '@angular/material' as mat;
+
+.message {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+
+  mat-icon {
+    margin-right: 0.75rem;
+    font-size: 20px;
+  }
+}
+
+.success-message {
+  background-color: rgba(colors.$success, 0.1);
+  color: colors.$success;
+  border-left: 4px solid colors.$success;
+}
+
+.error-message {
+  background-color: rgba(colors.$error, 0.1);
+  color: colors.$error;
+  border-left: 4px solid colors.$error;
+}
+
+app-base-button {
+  margin-left: auto;
+}
+
+app-base-button[color='success'] {
+  @include mat.button-overrides(
+    (
+      text-label-text-color: colors.$success,
+      text-state-layer-color: colors.$success,
+      text-ripple-color: colors.$success,
+    )
+  );
+}

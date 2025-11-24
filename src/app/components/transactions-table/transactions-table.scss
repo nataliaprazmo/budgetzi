@@ -4,6 +4,11 @@
 mat-card {
   margin: 1rem;
   padding: 1rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+mat-card-title {
+  transition: color 0.3s ease;
 }
 
 table {
@@ -11,17 +16,27 @@ table {
   border-collapse: collapse;
 }
 
-.amount {
-  color: colors.$balance;
-  font-weight: bold;
-}
-
 th.mat-header-cell {
   text-align: left;
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 td.mat-cell {
   vertical-align: middle;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+.amount {
+  font-weight: bold;
+  transition: color 0.2s ease;
+
+  &.amount-income {
+    color: colors.$income;
+  }
+
+  &.amount-expense {
+    color: colors.$expense;
+  }
 }
 
 mat-chip {
@@ -48,4 +63,28 @@ mat-chip.expense {
       outline-color: colors.$expense,
     )
   );
+}
+
+:host-context(.dark-theme) {
+  table,
+  mat-paginator {
+    background-color: var(--bg-tertiary);
+  }
+  mat-card {
+    background-color: var(--bg-tertiary);
+  }
+  mat-card-title {
+    color: var(--text-secondary);
+  }
+  mat-card {
+    background-color: var(--bg-tertiary);
+  }
+  td.mat-cell {
+    color: var(--text-tertiary);
+    border-color: var(--border-color);
+  }
+  th.mat-header-cell {
+    color: var(--text-secondary);
+    background-color: var(--border-color-light);
+  }
 }

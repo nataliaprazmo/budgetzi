@@ -15,6 +15,74 @@ html {
       density: 0,
     )
   );
+
+  --text-primary: #1f1f1f;
+  --text-secondary: #717075;
+  --text-tertiary: #a7a7aa;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #f9f9f9;
+
+  --border-color: rgba(0, 0, 0, 0.12);
+  --border-color-light: rgba(0, 0, 0, 0.06);
+  --shadow-color-sm: rgba(0, 0, 0, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-lg: rgba(0, 0, 0, 0.15);
+
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+  --gradient-section: linear-gradient(135deg, rgba(0, 81, 255, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
+
+  --chart-axis-color: #333333;
+  --chart-legend-color: #333333;
+  --chart-grid-color: rgba(0, 0, 0, 0.1);
+  --chart-border-color: #ffffff;
+  --chart-tooltip-bg: rgba(0, 0, 0, 0.8);
+  --chart-tooltip-text: #ffffff;
+
+  --primary-overlay: rgba(0, 81, 255, 0.12);
+}
+
+html.dark-theme {
+  color-scheme: dark;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$blue-palette,
+        tertiary: mat.$violet-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-tertiary: #b0b8c7;
+  --text-accent: #90caf9;
+
+  --bg-primary: #13191f;
+  --bg-secondary: #1f2836;
+  --bg-tertiary: #252d3d;
+  --bg-accent: #3a4864;
+
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-color-light: rgba(255, 255, 255, 0.06);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-lg: rgba(0, 0, 0, 0.4);
+
+  --gradient-card: linear-gradient(135deg, #252d3d 0%, #1f2836 100%);
+  --gradient-section: linear-gradient(135deg, #1a2332 0%, #13191f 100%);
+
+  --chart-axis-color: #e0e0e0;
+  --chart-legend-color: #e0e0e0;
+  --chart-grid-color: rgba(255, 255, 255, 0.1);
+  --chart-border-color: rgb(30, 37, 53);
+  --chart-tooltip-bg: rgba(0, 0, 0, 0.8);
+  --chart-tooltip-text: #ffffff;
+
+  --primary-overlay: rgba(63, 81, 181, 0.2);
 }
 
 body {
@@ -23,4 +91,45 @@ body {
   font: var(--mat-sys-body-medium);
 
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+router-outlet ~ * {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }

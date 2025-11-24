@@ -1,37 +1,65 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer mode="over">
+  <mat-sidenav #drawer mode="over" [fixedInViewport]="false">
     <mat-nav-list>
-      <button mat-button (click)="drawer.close()">
-        <mat-icon>add</mat-icon>
-        <span>Add Transaction</span>
-      </button>
-      <button mat-button (click)="drawer.close()">
-        <mat-icon>analytics</mat-icon>
-        <span>View Summary</span>
-      </button>
+      <mat-list-item
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="drawer.close()"
+      >
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/add" routerLinkActive="active" (click)="drawer.close()">
+        <mat-icon matListItemIcon>add_circle</mat-icon>
+        <span matListItemTitle>Add Transaction</span>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/data-management"
+        routerLinkActive="active"
+        (click)="drawer.close()"
+      >
+        <mat-icon matListItemIcon>storage</mat-icon>
+        <span matListItemTitle>Data Management</span>
+      </mat-list-item>
     </mat-nav-list>
+    <mat-divider></mat-divider>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="drawer.toggle()">
+    <mat-toolbar color="primary" class="app-toolbar">
+      <button mat-icon-button (click)="drawer.toggle()" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span class="app-title">{{ title() }}</span>
+      <a routerLink="/" class="app-title">{{ title() }}</a>
 
       <span class="spacer"></span>
 
-      <p>
-        Total balance: @let balance = totalBalance$ | async;
-        <span class="balance"
+      <div class="balance-display">
+        <span class="balance-label">Balance:</span>
+        @let balance = totalBalance$ | async;
+        <span class="balance-amount"
           >@if (balance !== null && balance !== undefined) {
           {{ balance | currency }}
           } @else {
           {{ 0 | currency }}
           }</span
         >
-      </p>
+      </div>
+
+      <button
+        mat-icon-button
+        (click)="toggleTheme()"
+        [matTooltip]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        class="theme-toggle"
+      >
+        @if (themeService.isDarkMode()) {
+        <mat-icon>light_mode</mat-icon>
+        } @else {
+        <mat-icon>dark_mode</mat-icon>
+        }
+      </button>
     </mat-toolbar>
 
     <router-outlet></router-outlet>

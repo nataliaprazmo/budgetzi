@@ -15,6 +15,13 @@ export const transactionReducer = createReducer(
     return { ...state, transactions: newTransactions };
   }),
 
+  on(TransactionActions.updateTransaction, (state, { id, changes }) => {
+    const newTransactions = state.transactions.map((t) =>
+      t.id === id ? ({ ...t, ...(changes as any) } as typeof t) : t
+    );
+    return { ...state, transactions: newTransactions };
+  }),
+
   on(TransactionActions.setTransactionFilters, (state, { filters }) => ({
     ...state,
     filters,

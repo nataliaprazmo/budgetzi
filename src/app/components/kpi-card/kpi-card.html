@@ -1,6 +1,22 @@
 <mat-card class="kpi-card">
   <div class="kpi-content">
-    <div class="kpi-label">{{ label | uppercase }}</div>
-    <div [ngStyle]="{ color: color }" class="kpi-value">{{ value | currency }}</div>
+    <div class="kpi-header">
+      <div class="kpi-label">{{ label | uppercase }}</div>
+      @if (trend !== undefined) {
+      <div class="kpi-trend" [ngClass]="{ positive: trend >= 0, negative: trend < 0 }">
+        <mat-icon class="trend-icon">{{ trend >= 0 ? 'trending_up' : 'trending_down' }}</mat-icon>
+        <span class="trend-value">{{ trend | number : '1.0-0' }}%</span>
+      </div>
+      }
+    </div>
+    <div [ngStyle]="{ color: color }" class="kpi-value">
+      @switch (format) { @case ('percent') {
+      {{ value | number : '1.0-0' }}% } @default {
+      {{ value | currency }}
+      } }
+    </div>
+    @if (trendLabel) {
+    <div class="kpi-sublabel">{{ trendLabel }}</div>
+    }
   </div>
 </mat-card>

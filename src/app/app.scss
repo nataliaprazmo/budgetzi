@@ -1,43 +1,215 @@
 @use '../colors' as colors;
 
-.balance {
-  color: colors.$balance;
-  font-weight: 600;
-}
-
 .sidenav-container {
   height: 100vh;
 }
 
-mat-toolbar {
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
   display: flex;
   align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: box-shadow 0.3s ease;
+
+  .menu-button {
+    flex-shrink: 0;
+  }
+
+  .app-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .app-title:hover {
+    color: colors.$balance;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .theme-toggle {
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .balance-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+
+    .balance-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .balance-amount {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: colors.$balance;
+    }
+  }
 }
 
-mat-nav-list {
-  padding: 32px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+mat-sidenav {
+  width: 320px;
+  transition: background-color 0.3s ease;
+
+  mat-nav-list {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    mat-list-item {
+      border-radius: 8px;
+      margin: 0;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      position: relative;
+
+      &:hover {
+        background-color: var(--shadow-color-sm);
+        transform: translateX(2px);
+      }
+
+      &:focus {
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+      }
+
+      &.active {
+        background-color: var(--primary-overlay);
+        font-weight: 600;
+
+        mat-icon {
+          color: colors.$balance;
+        }
+      }
+
+      mat-icon {
+        transition: color 0.2s ease;
+        color: var(--text-secondary);
+      }
+
+      [matListItemTitle] {
+        transition: color 0.2s ease;
+        color: var(--text-primary);
+      }
+
+      &.active [matListItemTitle] {
+        color: colors.$balance;
+      }
+    }
+  }
+
+  mat-divider {
+    margin: 0.5rem 0;
+  }
 }
 
-.app-title {
-  margin-left: 8px;
-  font-weight: bold;
-  font-size: 1.5rem;
+:host-context(.dark-theme) {
+  .app-toolbar {
+    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--bg-secondary);
+  }
+
+  mat-sidenav {
+    mat-nav-list {
+      mat-list-item {
+        &:hover {
+          background-color: var(--bg-secondary);
+        }
+
+        &.active {
+          background-color: var(--bg-tertiary);
+        }
+
+        mat-icon {
+          color: var(--text-tertiary);
+        }
+
+        [matListItemTitle] {
+          color: var(--text-primary);
+        }
+
+        &.active [matListItemTitle] {
+          color: var(--text-accent);
+        }
+      }
+    }
+  }
 }
 
-.spacer {
-  flex: 1 1 auto;
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 280px;
+
+    mat-nav-list {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+
+  .app-toolbar {
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+
+    .app-title {
+      font-size: 1.3rem;
+    }
+
+    .balance-display {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+      gap: 0.5rem;
+
+      .balance-label {
+        display: none;
+      }
+
+      .balance-amount {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
-mat-nav-list button {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: start;
-}
+@media (max-width: 480px) {
+  mat-sidenav {
+    width: 100%;
+  }
 
-mat-nav-list mat-icon {
-  margin-right: 8px;
+  .app-toolbar {
+    padding: 0 0.5rem;
+
+    .app-title {
+      font-size: 1.2rem;
+    }
+
+    .balance-display {
+      padding: 0.4rem 0.5rem;
+      font-size: 0.85rem;
+
+      .balance-amount {
+        font-size: 0.95rem;
+      }
+    }
+  }
 }

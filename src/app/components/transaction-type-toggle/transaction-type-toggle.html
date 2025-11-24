@@ -1,0 +1,9 @@
+<mat-button-toggle-group
+  [value]="selectedType"
+  (change)="onTypeChange($event.value)"
+  exclusive
+  class="type-toggle"
+>
+  <mat-button-toggle value="income">Income</mat-button-toggle>
+  <mat-button-toggle value="expense">Expense</mat-button-toggle>
+</mat-button-toggle-group>

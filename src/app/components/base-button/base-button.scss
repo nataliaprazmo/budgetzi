@@ -5,6 +5,7 @@
   @include mat.button-overrides(
     (
       outlined-label-text-color: white,
+      text-label-text-color: var(--text-primary),
     )
   );
 }

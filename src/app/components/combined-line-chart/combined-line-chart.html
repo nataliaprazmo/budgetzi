@@ -1,0 +1,7 @@
+<div class="chart-container">
+  @let chartData = chartData$ | async; @if (chartData) {
+  <canvas baseChart [type]="chartType" [data]="chartData" [options]="lineChartOptions"></canvas>
+  } @else {
+  <div class="loading">Loading chart data...</div>
+  }
+</div>
