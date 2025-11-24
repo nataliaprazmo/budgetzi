@@ -2,6 +2,12 @@
 <div class="message success-message">
   <mat-icon>check_circle</mat-icon>
   <span>Transaction added successfully!</span>
+  <app-base-button
+    label="Go to Dashboard"
+    variant="text"
+    color="success"
+    (action)="goToDashboard()"
+  />
 </div>
 } @if (showErrorMessage) {
 <div class="message error-message">

@@ -1,4 +1,5 @@
 @use '../../../colors' as colors;
+@use '@angular/material' as mat;
 
 .message {
   display: flex;
@@ -25,4 +26,18 @@
   background-color: rgba(colors.$error, 0.1);
   color: colors.$error;
   border-left: 4px solid colors.$error;
+}
+
+app-base-button {
+  margin-left: auto;
+}
+
+app-base-button[color='success'] {
+  @include mat.button-overrides(
+    (
+      text-label-text-color: colors.$success,
+      text-state-layer-color: colors.$success,
+      text-ripple-color: colors.$success,
+    )
+  );
 }
