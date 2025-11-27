@@ -81,6 +81,13 @@ export class ExpensePieChart implements OnInit {
           },
         },
       },
+      onResize: (chart, size) => {
+        if (size.width < 420) {
+          chart.options.plugins!.legend!.position = 'bottom';
+        } else {
+          chart.options.plugins!.legend!.position = 'right';
+        }
+      },
     };
   }
 
