@@ -1,0 +1,5 @@
+@if (type === 'income') {
+<mat-chip class="income">{{ type | titlecase }}</mat-chip>
+} @else {
+<mat-chip class="expense">{{ type | titlecase }}</mat-chip>
+}

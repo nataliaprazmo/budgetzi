@@ -29,7 +29,6 @@ A simple **Angular + Angular Material** project that helps track expenses and in
 
 I'm currently planning to:
 
-- Fix remaining **responsiveness issues** across different screen sizes
 - Improve **SEO** and overall **bundle size** for better performance
 - Refine and reorganize the **project structure** to make it cleaner and more scalable
 
