@@ -51,6 +51,38 @@ ng serve -o
 
 The app will run on [`http://localhost:4200/`](http://localhost:4200/)
 
+## Building for SSR
+
+### Development Build
+
+```bash
+npm start
+```
+
+### Production Build (Client + Server)
+
+```bash
+npm run build:ssr
+```
+
+### Build Only Client
+
+```bash
+npm run build:client
+```
+
+### Build Only Server
+
+```bash
+npm run build:server
+```
+
+### Serve SSR Application
+
+```bash
+npm run serve:ssr
+```
+
 ## CSV Import Format Example
 
 Sample data can be found in:
