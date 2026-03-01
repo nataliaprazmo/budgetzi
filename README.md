@@ -29,6 +29,29 @@ A simple **Angular + Angular Material** project that helps track expenses and in
 - **NgRx setup** with **actions**, **reducers**, **selectors**, and **effects**, backed by a modular, standalone component architecture
 - **Feature-centric architecture** with barrel exports for clean imports and scalability
 - **Centralized utilities library** with reusable transaction and date formatting helpers
+- **Refactored transaction table** with separated cell components for cleaner, more maintainable code
+
+## Project Architecture
+
+The project follows a modern, scalable Angular 20+ architecture:
+
+- **SSR-Ready**: Server-side rendering with Express and @angular/platform-server for SEO optimization
+- **Feature-Based**: Organized into self-contained features (dashboard, transactions, charts, data-management) with barrel exports
+- **State Management**: NgRx store moved to feature folders for better encapsulation and scalability
+- **Lazy-Loading**: Feature modules load on-demand with automatic code-splitting (verified in build output)
+- **Shared Utilities**: Centralized `lib/utils` with transaction and date formatting helpers (DRY principle)
+- **Services Barrel**: Clean exports of SeoService, ThemeService, and ChartColorsService
+- **Types Organization**: Centralized type definitions with barrel exports for easy imports
+
+## Next Steps
+
+Future improvements planned:
+
+- Fix remaining **responsiveness issues** across different screen sizes
+- Categories management
+- Data management insights
+- Monthly rollups, forecasting
+- Deployment
 
 ## Getting Started
 

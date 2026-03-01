@@ -1,0 +1,12 @@
+@use '../../../colors' as colors;
+
+.amount {
+  font-weight: bold;
+  transition: color 0.2s ease;
+  &.amount-income {
+    color: colors.$income;
+  }
+  &.amount-expense {
+    color: colors.$expense;
+  }
+}
