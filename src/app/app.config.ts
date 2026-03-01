@@ -7,8 +7,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { transactionReducer } from './store/transaction.reducer';
-import { TransactionEffects } from './store/transaction.effects';
+import { transactionReducer, TransactionEffects } from './features/transactions/store';
 import { provideCharts } from 'ng2-charts';
 
 import {

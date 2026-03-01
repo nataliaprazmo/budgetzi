@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
-import { AddTransaction } from './components/add-transaction/add-transaction';
+import { AddTransaction } from './features/transactions';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./components/dashboard/dashboard').then((m) => m.Dashboard),
+    loadChildren: () => import('./features/dashboard').then((m) => m.DashboardModule),
   },
   { path: 'add', component: AddTransaction },
   {
     path: 'data-management',
     loadComponent: () =>
-      import('./components/data-management/data-management').then((m) => m.DataManagement),
+      import('./features/data-management').then((m) => m.DataManagement),
   },
   { path: 'edit/:id', component: AddTransaction },
 ];

@@ -1,5 +1,13 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { TransactionState } from '../types/transaction-states.types';
+import {
+  calculateTotalByType,
+  groupTransactionsByMonth,
+  groupExpensesByCategory,
+  calculateSavingsRate,
+  getExpenseCategories,
+  formatToMonthLabel,
+} from '../lib/utils';
 
 export const selectTransactionState = createFeatureSelector<TransactionState>('transaction');
 
@@ -19,10 +27,7 @@ export const selectTransactionsLoaded = createSelector(
 );
 
 export const selectExpenseCategories = createSelector(selectAllTransactions, (transactions) =>
-  transactions
-    .filter((t) => t.type === 'expense' && 'category' in t)
-    .map((t) => (t as any).category)
-    .filter((v, i, a) => a.indexOf(v) === i)
+  getExpenseCategories(transactions)
 );
 
 export const selectTransactionLoading = createSelector(
@@ -56,11 +61,11 @@ export const selectFilteredTransactions = createSelector(
 );
 
 export const selectTotalIncome = createSelector(selectAllTransactions, (transactions) =>
-  transactions.filter((t) => t.type === 'income').reduce((sum, t) => sum + t.amount, 0)
+  calculateTotalByType(transactions, 'income')
 );
 
 export const selectTotalExpenses = createSelector(selectAllTransactions, (transactions) =>
-  transactions.filter((t) => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0)
+  calculateTotalByType(transactions, 'expense')
 );
 
 export const selectBalance = createSelector(
@@ -72,13 +77,13 @@ export const selectBalance = createSelector(
 export const selectFilteredTotalIncome = createSelector(
   selectFilteredTransactions,
   (transactions) =>
-    transactions.filter((t) => t.type === 'income').reduce((sum, t) => sum + t.amount, 0)
+    calculateTotalByType(transactions, 'income')
 );
 
 export const selectFilteredTotalExpenses = createSelector(
   selectFilteredTransactions,
   (transactions) =>
-    transactions.filter((t) => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0)
+    calculateTotalByType(transactions, 'expense')
 );
 
 export const selectFilteredBalance = createSelector(
@@ -88,39 +93,11 @@ export const selectFilteredBalance = createSelector(
 );
 
 export const selectExpensesByMonth = createSelector(selectFilteredTransactions, (transactions) => {
-  const grouped: Record<string, number> = {};
-
-  transactions
-    .filter((t) => t.type === 'expense')
-    .forEach((transaction) => {
-      const date = new Date(transaction.date);
-      const monthLabel = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-      });
-
-      grouped[monthLabel] = (grouped[monthLabel] || 0) + transaction.amount;
-    });
-
-  return grouped;
+  return groupTransactionsByMonth(transactions, 'expense');
 });
 
 export const selectIncomeByMonth = createSelector(selectFilteredTransactions, (transactions) => {
-  const grouped: Record<string, number> = {};
-
-  transactions
-    .filter((t) => t.type === 'income')
-    .forEach((transaction) => {
-      const date = new Date(transaction.date);
-      const monthLabel = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-      });
-
-      grouped[monthLabel] = (grouped[monthLabel] || 0) + transaction.amount;
-    });
-
-  return grouped;
+  return groupTransactionsByMonth(transactions, 'income');
 });
 
 export const selectChartData = createSelector(
@@ -143,16 +120,7 @@ export const selectChartData = createSelector(
 export const selectExpensesByCategory = createSelector(
   selectFilteredTransactions,
   (transactions) => {
-    const grouped: Record<string, number> = {};
-
-    transactions
-      .filter((t) => t.type === 'expense' && 'category' in t)
-      .forEach((transaction) => {
-        const category = (transaction as any).category || 'Uncategorized';
-        grouped[category] = (grouped[category] || 0) + transaction.amount;
-      });
-
-    return grouped;
+    return groupExpensesByCategory(transactions);
   }
 );
 
@@ -170,7 +138,6 @@ export const selectMonthlySavingsRate = createSelector(
   selectFilteredTotalIncome,
   selectFilteredTotalExpenses,
   (income, expenses) => {
-    if (income === 0) return 0;
-    return ((income - expenses) / income) * 100;
+    return calculateSavingsRate(income, expenses);
   }
 );
