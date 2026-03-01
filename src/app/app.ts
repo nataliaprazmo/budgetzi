@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
@@ -7,10 +7,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { TransactionState } from './types/transaction-states.types';
-import { selectBalance } from './store/transaction.selectors';
-import { ThemeService } from './services/theme.service';
-import { MaterialModule } from './shared/material.module';
+import { TransactionState } from './types';
+import { selectBalance } from './features/transactions/store';
+import { ThemeService, SeoService } from './services';
+import { MaterialModule } from './shared';
 
 @Component({
   selector: 'app-root',
@@ -32,12 +32,14 @@ import { MaterialModule } from './shared/material.module';
 export class App {
   protected readonly title = signal('💰 Budgetzi');
   totalBalance$: Observable<number>;
+  private seoService = inject(SeoService);
 
   constructor(
     private store: Store<{ transaction: TransactionState }>,
-    protected themeService: ThemeService
+    protected themeService: ThemeService,
   ) {
     this.totalBalance$ = this.store.select(selectBalance);
+    this.seoService.resetToDefault();
   }
 
   toggleTheme(): void {
