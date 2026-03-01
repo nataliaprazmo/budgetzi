@@ -17,6 +17,9 @@ A simple **Angular + Angular Material** project that helps track expenses and in
 
 ## Features
 
+- **SSR (Server-Side Rendering)** with @angular/platform-server for improved SEO and initial page load performance
+- **Dynamic SEO** with Title, Meta tags, Open Graph, and canonical link management
+- **Lazy-loaded feature modules** (dashboard, transactions, charts, data-management) with automatic code-splitting
 - **Managing transactions** (income & expenses): reading, adding, editing, and deleting via a **reactive form** and **Angular Material table**
 - **Dashboard** with total income, total expenses, and balance KPIs, updated automatically based on filters and state changes
 - **Filtering** by transaction type, category, and date range, fully **integrated with NgRx** for consistent state management
@@ -24,21 +27,8 @@ A simple **Angular + Angular Material** project that helps track expenses and in
 - **CSV import/export** and a dedicated data management screen for loading sample data, handling backups, and managing stored transactions
 - **Light/dark theme** support
 - **NgRx setup** with **actions**, **reducers**, **selectors**, and **effects**, backed by a modular, standalone component architecture
-
-## Next Steps
-
-I'm currently planning to:
-
-- Fix remaining **responsiveness issues** across different screen sizes
-- Improve **SEO** and overall **bundle size** for better performance
-- Refine and reorganize the **project structure** to make it cleaner and more scalable
-
-## Future Improvements
-
-- Categories management
-- Data management insights
-- Monthly rollups, forecasting
-- Deployment
+- **Feature-centric architecture** with barrel exports for clean imports and scalability
+- **Centralized utilities library** with reusable transaction and date formatting helpers
 
 ## Getting Started
 
@@ -102,14 +92,19 @@ id,title,amount,date,type
 
 ## What I learned
 
-This is my private project created to learn and understand Angular better, especially its modern features and patterns - with a strong focus on NgRx Store.
+This is my private project created to learn and understand Angular better, especially its modern features and patterns - with a strong focus on NgRx Store and performance optimization.
 
 Throughout the development of Budgetzi, I gained practical experience with:
 
-- Working with **NgRx actions, reducers, selectors, and effects** to manage state in a predictable way
-- Using **Angular Material** components to build polished UI layouts
-- Handling **reactive forms**
-- Implementing **CSV import/export**, parsing, and transforming data
+- **Server-Side Rendering (SSR)** with @angular/platform-server for SEO and initial page load optimization
+- **Dynamic SEO management** with meta tags, Open Graph, and canonical links
+- **Feature-based architecture** with barrel imports for clean code organization and scalability
+- **Lazy-loading and code-splitting** for improved production bundle performance
+- **NgRx actions, reducers, selectors, and effects** to manage state in a predictable way, organized per feature
+- **Reusable utilities** library to eliminate code duplication across components
+- **Angular Material** components to build polished UI layouts
+- **Reactive forms** and **CSV import/export** with data parsing and transformation
+- **Standalone components** with modern Angular 20+ Application API
 
 ---
 

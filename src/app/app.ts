@@ -7,11 +7,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { TransactionState } from './types/transaction-states.types';
-import { selectBalance } from './store/transaction.selectors';
-import { ThemeService } from './services/theme.service';
-import { SeoService } from './services/seo.service';
-import { MaterialModule } from './shared/material.module';
+import { TransactionState } from './types';
+import { selectBalance } from './features/transactions/store';
+import { ThemeService, SeoService } from './services';
+import { MaterialModule } from './shared';
 
 @Component({
   selector: 'app-root',
