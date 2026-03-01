@@ -2,28 +2,32 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Transaction } from '../../types/transaction.types';
 import { deleteTransaction } from '../../store/transaction.actions';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TransactionState } from '../../types/transaction-states.types';
 import { selectAllTransactions } from '../../store/transaction.selectors';
 import { TransactionsTableFilters } from '../transactions-table-filters/transactions-table-filters';
+import { TransactionTypeCell } from '../transaction-type-cell/transaction-type-cell';
+import { TransactionAmountCell } from '../transaction-amount-cell/transaction-amount-cell';
+import { TransactionActionsCell } from '../transaction-actions-cell/transaction-actions-cell';
+import { TransactionFilterService } from '../../services/transaction-filters.service';
 import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-transactions-table',
+  standalone: true,
   imports: [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MaterialModule,
-    RouterLink,
-    TitleCasePipe,
-    CurrencyPipe,
     DatePipe,
     TransactionsTableFilters,
+    TransactionTypeCell,
+    TransactionAmountCell,
+    TransactionActionsCell,
   ],
   templateUrl: './transactions-table.html',
   styleUrl: './transactions-table.scss',
@@ -42,12 +46,16 @@ export class TransactionsTable implements AfterViewInit {
     'date',
     'actions',
   ];
+
   selectedTypeFilter: 'all' | 'income' | 'expense' = 'all';
   selectedCategoryFilter: string = 'all';
   allTransactions: Transaction[] = [];
   availableCategories: string[] = [];
 
-  constructor(private store: Store<{ transaction: TransactionState }>) {
+  constructor(
+    private store: Store<{ transaction: TransactionState }>,
+    private filterService: TransactionFilterService
+  ) {
     this.store.select(selectAllTransactions).subscribe((transactions) => {
       this.allTransactions = transactions;
       this.updateAvailableCategories();
@@ -55,37 +63,25 @@ export class TransactionsTable implements AfterViewInit {
     });
   }
 
-  onDelete(id: string) {
-    if (!id) return;
-    const confirmed = confirm('Delete this transaction?');
-    if (!confirmed) return;
-    this.store.dispatch(deleteTransaction({ id }));
-  }
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
+  onDelete(id: string) {
+    this.store.dispatch(deleteTransaction({ id }));
+  }
+
   updateAvailableCategories() {
-    const expenseTransactions = this.allTransactions.filter((t) => t.type === 'expense');
-    const categories = expenseTransactions
-      .map((t) => t.category)
-      .filter((cat): cat is string => !!cat);
-    this.availableCategories = [...new Set(categories)].sort();
+    this.availableCategories = this.filterService.getAvailableCategories(this.allTransactions);
   }
 
   applyFilters() {
-    let filtered = this.allTransactions;
-
-    if (this.selectedTypeFilter !== 'all') {
-      filtered = filtered.filter((t) => t.type === this.selectedTypeFilter);
-    }
-
-    if (this.selectedTypeFilter === 'expense' && this.selectedCategoryFilter !== 'all') {
-      filtered = filtered.filter((t) => t.category === this.selectedCategoryFilter);
-    }
-
+    const filtered = this.filterService.applyFilters(
+      this.allTransactions,
+      this.selectedTypeFilter,
+      this.selectedCategoryFilter
+    );
     this.dataSource.data = filtered;
     this.dataSource.sort = this.sort;
   }

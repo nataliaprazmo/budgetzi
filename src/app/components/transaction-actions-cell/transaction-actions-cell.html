@@ -1,0 +1,18 @@
+<button
+  mat-icon-button
+  color="primary"
+  aria-label="Edit transaction"
+  [routerLink]="['/edit', transactionId]"
+  matTooltip="Edit"
+>
+  <mat-icon>edit</mat-icon>
+</button>
+<button
+  mat-icon-button
+  color="warn"
+  aria-label="Delete transaction"
+  (click)="handleDelete()"
+  matTooltip="Delete"
+>
+  <mat-icon>delete</mat-icon>
+</button>

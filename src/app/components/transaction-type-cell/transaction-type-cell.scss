@@ -1,0 +1,35 @@
+@use '../../../colors' as colors;
+@use '@angular/material' as mat;
+
+mat-chip {
+  @include mat.chips-overrides(
+    (
+      container-shape-radius: 1000px,
+    )
+  );
+}
+
+mat-chip.income {
+  @include mat.chips-overrides(
+    (
+      label-text-color: colors.$income,
+      outline-color: colors.$income,
+    )
+  );
+}
+
+mat-chip.expense {
+  @include mat.chips-overrides(
+    (
+      label-text-color: colors.$expense,
+      outline-color: colors.$expense,
+    )
+  );
+}
+
+@media (max-width: 768px) {
+  mat-chip {
+    font-size: 0.75rem;
+    min-height: 24px;
+  }
+}

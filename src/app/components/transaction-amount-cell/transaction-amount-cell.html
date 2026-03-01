@@ -1,0 +1,5 @@
+@if (type === 'income') {
+<span class="amount amount-income">{{ amount | currency }}</span>
+} @else {
+<span class="amount amount-expense">{{ amount | currency }}</span>
+}

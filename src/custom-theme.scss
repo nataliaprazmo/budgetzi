@@ -3,6 +3,7 @@
 @include mat.core();
 
 html {
+  min-width: 400px;
   color-scheme: light;
 
   @include mat.theme(
